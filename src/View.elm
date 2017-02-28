@@ -1,5 +1,22 @@
 module View exposing (root)
 
-import Html exposing (Html, div, text)
+import Css exposing (class)
+import HomepageCss exposing (CssClasses(FlexContainer))
+import Html exposing (Html, div, img, text)
+import Html.Attributes exposing (attribute)
+import Stylesheets exposing (..)
+import Html.CssHelpers
 
-root model = div [] [text "hello"]
+
+{ id, class, classList } =
+    Html.CssHelpers.withNamespace "lutra"
+
+
+root model =
+    div [ class [ FlexContainer ] ]
+        [ img
+            [ attribute "src" "assets/lutra-logo.svg"
+            ]
+            []
+        , text "hello"
+        ]

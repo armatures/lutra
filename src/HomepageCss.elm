@@ -2,17 +2,46 @@ module HomepageCss exposing (css, CssClasses(..))
 
 import Css exposing (..)
 import Css.Namespace exposing (namespace)
-import Css.Elements exposing (body)
+import Css.Elements exposing (a, body)
 
 
 type CssClasses
-    = FlexContainer
+    = HeaderLinks
+    | PageWrapper
+    | Header
+    | PageContent
+    | LutraLogo
 
 
 css =
     (stylesheet << namespace "lutra")
-        [ class FlexContainer
-            [ backgroundColor (hex "123") ]
+        [ class Header
+            [ backgroundColor (hex "CC8888")
+            , displayFlex
+            , flexDirection row
+            , children
+                [ class LutraLogo
+                    [ flexGrow (num 0)
+                    ]
+                ]
+            ]
+        , class HeaderLinks
+            [ backgroundColor (rgb 255 0 200)
+            , verticalAlign top
+            , displayFlex
+            , children
+                [ a
+                    [ padding (px 20)
+                    , flex auto
+                    ]
+                ]
+            ]
+        , class PageWrapper []
+        , class PageContent
+            [ padding (px 30)
+            ]
         , body
-            [ backgroundColor (hex "CC7777") ]
+            [ margin (px 0)
+            , fontFamilies [ "Helvetica", .value sansSerif ]
+            ]
         ]

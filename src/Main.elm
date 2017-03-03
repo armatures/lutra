@@ -1,32 +1,46 @@
 module Main exposing (..)
 
 import Html
+import Material
 import Models exposing (Model, Route(AboutRoute))
 import Navigation
-import Routing
+import Routing exposing (routeByIndex)
+import Models exposing (..)
 import View exposing (..)
 
 
 main : Program Never Model Msg
 main =
     Navigation.program UrlChange
-        { init = \location -> ( { route = Routing.parseLocation location }, Cmd.none )
+        { init = init
         , update = update
         , subscriptions = \_ -> Sub.none
         , view = View.root
         }
 
 
-type Msg
-    = NoOp
-    | UrlChange Navigation.Location
+init location =
+    { route = Routing.parseLocation location
+    , mdl = Material.model
+    }
+        ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            ( { model | route = Routing.parseLocation location }, Cmd.none )
+            { model | route = Routing.parseLocation location } ! []
 
         NoOp ->
-            ( model, Cmd.none )
+            model ! []
+
+        SelectTab num ->
+            let
+                _ =
+                    Debug.log "SelectTab: " num
+            in
+                { model | route = routeByIndex num } ! []
+
+        Mdl msg_ ->
+            Material.update Mdl msg_ model

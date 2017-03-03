@@ -2,11 +2,14 @@ module View exposing (root)
 
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
-import Html exposing (Html, a, div, form, h3, img, input, label, li, p, span, text)
-import Html.Attributes exposing (attribute, for, href, placeholder)
+import Html exposing (Html, a, div, form, h1, h3, img, input, label, li, p, span, text)
+import Html.Attributes exposing (attribute, for, href, placeholder, style)
+import Material
 import Stylesheets exposing (..)
 import Html.CssHelpers
-import Models exposing (Route(AboutRoute, ContactRoute, NotFoundRoute))
+import Models exposing (Msg(SelectTab), Route(AboutRoute, ContactRoute, NotFoundRoute))
+import Material.Layout as Layout
+import Models
 
 
 { id, class, classList } =
@@ -18,15 +21,33 @@ styles =
 
 
 root model =
-    div [ class [ PageWrapper ] ]
-        [ viewHeader model
-        , viewPageContent model
+    Layout.render Models.Mdl
+        model.mdl
+        [ Layout.fixedHeader
+        , Layout.onSelectTab SelectTab
+          --        , Layout.fixedDrawer
+          --        , Options.css "display" "flex !important"
+          --        , Options.css "flex-direction" "row"
+          --        , Options.css "align-items" "center"
         ]
+        { header =
+            [ viewHeader model ]
+        , drawer =
+            []
+            --            [ drawerHeader model, viewDrawer model ]
+        , tabs = ( [ text "About", text "Contact" ], [] )
+        , main =
+            [ viewPageContent model
+            ]
+        }
 
 
-viewLink : String -> Html msg
-viewLink name =
-    a [ href ("#" ++ name) ] [ text name ]
+
+--        div
+--        [ class [ PageWrapper ] ]
+--        [ viewHeader model
+--        , viewPageContent model
+--        ]
 
 
 viewHeader model =
@@ -88,3 +109,8 @@ viewPageContent model =
                     ]
     in
         div [ class [ PageContent ] ] content
+
+
+viewLink : String -> Html msg
+viewLink name =
+    a [ href ("#" ++ name) ] [ text name ]

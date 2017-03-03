@@ -17,14 +17,14 @@ type CssClasses
 css =
     (stylesheet << namespace "lutra")
         [ class Header
-            [ backgroundColor (hex "CC8888")
-            , displayFlex
-            , flexDirection row
-            , children
-                [ class LutraLogo
-                    [ flexGrow (num 0)
-                    ]
-                ]
+            [--            backgroundColor (hex "CC8888")
+             --            , displayFlex
+             --            , flexDirection row
+             --            , children
+             --                [ class LutraLogo
+             --                    [ flexGrow (num 0)
+             --                    ]
+             --                ]
             ]
         , class HeaderLinks
             [ displayFlex

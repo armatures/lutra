@@ -22,6 +22,7 @@ main =
 init location =
     { route = Routing.parseLocation location
     , mdl = Material.model
+    , contact = { email = "" }
     }
         ! []
 
@@ -36,11 +37,17 @@ update msg model =
             model ! []
 
         SelectTab num ->
+            { model | route = routeByIndex num } ! []
+
+        ContactEmailMsg email ->
             let
-                _ =
-                    Debug.log "SelectTab: " num
+                contact =
+                    model.contact
+
+                newContact =
+                    { contact | email = email }
             in
-                { model | route = routeByIndex num } ! []
+                { model | contact = newContact } ! []
 
         Mdl msg_ ->
             Material.update Mdl msg_ model

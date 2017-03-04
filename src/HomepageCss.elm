@@ -16,16 +16,7 @@ type CssClasses
 
 css =
     (stylesheet << namespace "lutra")
-        [ class Header
-            [--            backgroundColor (hex "CC8888")
-             --            , displayFlex
-             --            , flexDirection row
-             --            , children
-             --                [ class LutraLogo
-             --                    [ flexGrow (num 0)
-             --                    ]
-             --                ]
-            ]
+        [ class Header []
         , class HeaderLinks
             [ displayFlex
             , children
@@ -44,9 +35,8 @@ css =
             ]
         , class ContactForm
             [ boxShadow5 zero zero (px 15) (px 10) (rgba 0 0 0 0.1)
-            , maxWidth (px 660)
-            , padding (px 30)
-            , flexGrow (num 0)
+              --            , padding (px 30)
+              --            , flexGrow (num 0)
             , margin2 zero auto
             ]
         , input

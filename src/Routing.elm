@@ -17,24 +17,30 @@ matchers =
 
 routeByIndex : Int -> Route
 routeByIndex index =
-    let
-        _ =
-            Debug.log "index: " index
-    in
-        routeList
-            |> Array.fromList
-            |> get index
-            |> (\maybeRoute ->
-                    case maybeRoute of
-                        Just r ->
-                            r
+    routeList
+        |> Array.fromList
+        |> get index
+        |> Maybe.withDefault NotFoundRoute
 
-                        Nothing ->
-                            NotFoundRoute
-               )
+
+routeStrings =
+    List.map
+        (\r ->
+            case r of
+                AboutRoute ->
+                    "About"
+
+                ContactRoute ->
+                    "Contact"
+
+                NotFoundRoute ->
+                    "Route Not Found"
+        )
+        routeList
 
 
 routeList =
+    {--routes that have links in the header --}
     [ AboutRoute
     , ContactRoute
     ]

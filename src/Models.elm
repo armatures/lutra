@@ -7,6 +7,7 @@ import Navigation
 type alias Model =
     { route : Route
     , mdl : Material.Model
+    , contact : { email : String }
     }
 
 
@@ -21,3 +22,4 @@ type Msg
     | UrlChange Navigation.Location
     | Mdl (Material.Msg Msg)
     | SelectTab Int
+    | ContactEmailMsg String

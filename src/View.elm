@@ -5,11 +5,18 @@ import HomepageCss exposing (CssClasses(..))
 import Html exposing (Html, a, div, form, h1, h3, img, input, label, li, p, span, text)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
 import Material
+import Material.Grid exposing (Device(All), cell, grid, maxWidth, size)
+import Material.Options exposing (css)
 import Stylesheets exposing (..)
 import Html.CssHelpers
-import Models exposing (Msg(SelectTab), Route(AboutRoute, ContactRoute, NotFoundRoute))
+import Models exposing (Msg(..), Route(AboutRoute, ContactRoute, NotFoundRoute))
 import Material.Layout as Layout
 import Models
+import Material.Card as Card
+import Material.Elevation as Elevation
+import Material.Textfield as Textfield
+import Material.Options as Options
+import Routing exposing (routeStrings)
 
 
 { id, class, classList } =
@@ -35,34 +42,21 @@ root model =
         , drawer =
             []
             --            [ drawerHeader model, viewDrawer model ]
-        , tabs = ( [ text "About", text "Contact" ], [] )
+        , tabs = ( List.map text routeStrings, [] )
         , main =
             [ viewPageContent model
             ]
         }
 
 
-
---        div
---        [ class [ PageWrapper ] ]
---        [ viewHeader model
---        , viewPageContent model
---        ]
-
-
 viewHeader model =
-    div [ class [ Header ] ]
+    div []
         [ img
             [ attribute "src" "assets/lutra-logo.svg"
             , styles [ padding (px 10) ]
             , class [ LutraLogo ]
             ]
             []
-        , div [ styles [ Css.flexGrow (Css.num 1) ] ] []
-        , div [ class [ HeaderLinks ] ]
-            [ viewLink "about"
-            , viewLink "contact"
-            ]
         ]
 
 
@@ -91,17 +85,29 @@ viewPageContent model =
                     ]
 
                 ContactRoute ->
-                    [ h3 [] [ text "Contact" ]
-                      --                    , div [ class [ Buffer ] ] []
-                    , form [ class [ ContactForm ] ]
-                        [ input [ id "contactFirstName", placeholder "First Name" ] []
-                        , input [ id "contactLastName", placeholder "Last Name" ] []
-                        , input [ id "contactCompany", placeholder "Company" ] []
-                        , input [ id "contactEmail", placeholder "Email" ] []
-                        , input [ id "contactMessage", placeholder "Your Message" ] []
-                        , input [ attribute "type" "submit" ] []
+                    (showCard
+                        [ grid [ maxWidth "660px" ]
+                            [ cell [ size All 4 ] [ input [ id "contactFirstName", placeholder "First Name" ] [] ]
+                            , cell [ size All 4 ] [ input [ id "contactLastName", placeholder "Last Name" ] [] ]
+                            , cell [ size All 4 ] [ input [ id "contactCompany", placeholder "Company" ] [] ]
+                            , cell [ size All 4 ] [ input [ id "contactEmail", placeholder "Email" ] [] ]
+                            , cell [ size All 4 ] [ input [ id "contactMessage", placeholder "Your Message" ] [] ]
+                            , cell [ size All 4 ] [ input [ attribute "type" "submit" ] [] ]
+                            ]
                         ]
-                    ]
+                    )
+                        ++ (showCard
+                                [ Textfield.render Models.Mdl
+                                    [ 0 ]
+                                    model.mdl
+                                    [ Textfield.label "Email"
+                                    , Textfield.floatingLabel
+                                    , Textfield.value model.contact.email
+                                    , Options.onInput ContactEmailMsg
+                                    ]
+                                    []
+                                ]
+                           )
 
                 NotFoundRoute ->
                     [ h3 [] [ text "Route not found" ]
@@ -109,6 +115,39 @@ viewPageContent model =
                     ]
     in
         div [ class [ PageContent ] ] content
+
+
+showCard innerContent =
+    [ Card.view [ Elevation.e8 ]
+        [ Card.title
+            [ css "flex-direction" "column" ]
+            [ Card.head [] [ text "Let's Chat" ]
+            , Card.subhead [] [ text "We'll build something great" ]
+            ]
+        , Card.actions []
+            innerContent
+        ]
+    ]
+
+
+
+--contactCard =
+--    Card.view
+--        [ css "width" "256px" ]
+--        [ Card.title
+--            [ css "flex-direction" "column" ]
+--            [ Card.head [] [ text "Copenhagen" ]
+--            , Card.subhead [] [ text "Wed, 14:55, mostly cloudy" ]
+--              --        , Options.div
+--              --            [ css "padding" "2rem 2rem 0 2rem" ]
+--              --            [ Options.span
+--              --                [ Typography.display4
+--              --                , Color.text Color.primary
+--              --                ]
+--              --                [ text "21°" ]
+--              --            ]
+--            ]
+--        ]
 
 
 viewLink : String -> Html msg

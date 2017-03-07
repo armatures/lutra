@@ -4,6 +4,7 @@ import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
 import Html exposing (Html, a, div, form, h1, h3, img, input, label, li, p, span, text)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
+import List.Extra exposing (findIndex)
 import Material
 import Material.Grid exposing (Device(All), cell, grid, maxWidth, size)
 import Material.Options exposing (css)
@@ -16,7 +17,7 @@ import Material.Card as Card
 import Material.Elevation as Elevation
 import Material.Textfield as Textfield
 import Material.Options as Options
-import Routing exposing (routeStrings)
+import Routing exposing (routeList, routeStrings)
 import Material.Color as Color
 import Material.Scheme
 
@@ -30,11 +31,12 @@ styles =
 
 
 root model =
-    Material.Scheme.topWithScheme Color.Cyan Color.LightGreen <|
+    Material.Scheme.topWithScheme Color.Cyan Color.Indigo <|
         Layout.render Models.Mdl
             model.mdl
             [ Layout.fixedHeader
             , Layout.onSelectTab SelectTab
+            , Layout.selectedTab <| Maybe.withDefault -1 <| findIndex ((==) model.route) routeList
             ]
             { header =
                 [ viewHeader model ]

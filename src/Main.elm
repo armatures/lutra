@@ -3,8 +3,8 @@ module Main exposing (..)
 import Html
 import Material
 import Models exposing (Model, Route(AboutRoute))
-import Navigation
-import Routing exposing (routeByIndex)
+import Navigation exposing (modifyUrl)
+import Routing exposing (routeAsString, routeAsUrlFragment, routeByIndex)
 import Models exposing (..)
 import View exposing (..)
 
@@ -42,7 +42,14 @@ update msg model =
             model ! []
 
         SelectTab num ->
-            { model | route = routeByIndex num } ! []
+            let
+                newRoute =
+                    routeByIndex num
+            in
+                { model | route = newRoute }
+                    ! [ modifyUrl <|
+                            routeAsUrlFragment newRoute
+                      ]
 
         ContactFormMsg msg_ ->
             { model | contact = (updateContact msg_ model.contact) } ! []

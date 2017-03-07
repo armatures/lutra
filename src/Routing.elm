@@ -23,20 +23,27 @@ routeByIndex index =
         |> Maybe.withDefault NotFoundRoute
 
 
+routeStrings : List String
 routeStrings =
-    List.map
-        (\r ->
-            case r of
-                AboutRoute ->
-                    "About"
+    List.map routeAsString routeList
 
-                ContactRoute ->
-                    "Contact"
 
-                NotFoundRoute ->
-                    "Route Not Found"
-        )
-        routeList
+routeAsString : Route -> String
+routeAsString r =
+    case r of
+        AboutRoute ->
+            "About"
+
+        ContactRoute ->
+            "Contact"
+
+        NotFoundRoute ->
+            "Route Not Found"
+
+
+routeAsUrlFragment : Route -> String
+routeAsUrlFragment =
+    routeAsString >> String.toLower >> (++) "#"
 
 
 routeList =

@@ -17,6 +17,8 @@ import Material.Elevation as Elevation
 import Material.Textfield as Textfield
 import Material.Options as Options
 import Routing exposing (routeStrings)
+import Material.Color as Color
+import Material.Scheme
 
 
 { id, class, classList } =
@@ -28,25 +30,21 @@ styles =
 
 
 root model =
-    Layout.render Models.Mdl
-        model.mdl
-        [ Layout.fixedHeader
-        , Layout.onSelectTab SelectTab
-          --        , Layout.fixedDrawer
-          --        , Options.css "display" "flex !important"
-          --        , Options.css "flex-direction" "row"
-          --        , Options.css "align-items" "center"
-        ]
-        { header =
-            [ viewHeader model ]
-        , drawer =
-            []
-            --            [ drawerHeader model, viewDrawer model ]
-        , tabs = ( List.map text routeStrings, [] )
-        , main =
-            [ viewPageContent model
+    Material.Scheme.topWithScheme Color.Cyan Color.LightGreen <|
+        Layout.render Models.Mdl
+            model.mdl
+            [ Layout.fixedHeader
+            , Layout.onSelectTab SelectTab
             ]
-        }
+            { header =
+                [ viewHeader model ]
+            , drawer =
+                []
+            , tabs = ( List.map text routeStrings, [] )
+            , main =
+                [ viewPageContent model
+                ]
+            }
 
 
 viewHeader model =
@@ -101,11 +99,17 @@ viewPageContent model =
                             "Last Name"
                             model.contact.lastName
                             (ContactFormMsg << ContactLastNameMsg)
-                        , showContactFormField 3
+                        , Textfield.render Models.Mdl
+                            [ 3 ]
                             model.mdl
-                            "Message"
-                            model.contact.message
-                            (ContactFormMsg << ContactMessageMsg)
+                            [ Textfield.textarea
+                            , Textfield.label "Message"
+                            , Textfield.floatingLabel
+                            , Textfield.value model.contact.message
+                            , Options.onInput (ContactFormMsg << ContactMessageMsg)
+                            , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
+                            ]
+                            []
                         ]
 
                 NotFoundRoute ->

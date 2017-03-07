@@ -27,7 +27,7 @@ css =
                 ]
             ]
         , class LutraLogo
-            [ maxHeight (px 100)
+            [ maxHeight (px 120)
             ]
         , class PageWrapper []
         , class PageContent

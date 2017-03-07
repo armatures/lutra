@@ -9,7 +9,7 @@ import Material.Grid exposing (Device(All), cell, grid, maxWidth, size)
 import Material.Options exposing (css)
 import Stylesheets exposing (..)
 import Html.CssHelpers
-import Models exposing (Msg(..), Route(AboutRoute, ContactRoute, NotFoundRoute))
+import Models exposing (Msg(..), ContactMsg(..), Route(AboutRoute, ContactRoute, NotFoundRoute))
 import Material.Layout as Layout
 import Models
 import Material.Card as Card
@@ -85,29 +85,28 @@ viewPageContent model =
                     ]
 
                 ContactRoute ->
-                    (showCard
-                        [ grid [ maxWidth "660px" ]
-                            [ cell [ size All 4 ] [ input [ id "contactFirstName", placeholder "First Name" ] [] ]
-                            , cell [ size All 4 ] [ input [ id "contactLastName", placeholder "Last Name" ] [] ]
-                            , cell [ size All 4 ] [ input [ id "contactCompany", placeholder "Company" ] [] ]
-                            , cell [ size All 4 ] [ input [ id "contactEmail", placeholder "Email" ] [] ]
-                            , cell [ size All 4 ] [ input [ id "contactMessage", placeholder "Your Message" ] [] ]
-                            , cell [ size All 4 ] [ input [ attribute "type" "submit" ] [] ]
-                            ]
+                    showCard
+                        [ showContactFormField 0
+                            model.mdl
+                            "Email"
+                            model.contact.email
+                            (ContactFormMsg << ContactEmailMsg)
+                        , showContactFormField 1
+                            model.mdl
+                            "First Name"
+                            model.contact.firstName
+                            (ContactFormMsg << ContactFirstNameMsg)
+                        , showContactFormField 2
+                            model.mdl
+                            "Last Name"
+                            model.contact.lastName
+                            (ContactFormMsg << ContactLastNameMsg)
+                        , showContactFormField 3
+                            model.mdl
+                            "Message"
+                            model.contact.message
+                            (ContactFormMsg << ContactMessageMsg)
                         ]
-                    )
-                        ++ (showCard
-                                [ Textfield.render Models.Mdl
-                                    [ 0 ]
-                                    model.mdl
-                                    [ Textfield.label "Email"
-                                    , Textfield.floatingLabel
-                                    , Textfield.value model.contact.email
-                                    , Options.onInput ContactEmailMsg
-                                    ]
-                                    []
-                                ]
-                           )
 
                 NotFoundRoute ->
                     [ h3 [] [ text "Route not found" ]
@@ -115,6 +114,18 @@ viewPageContent model =
                     ]
     in
         div [ class [ PageContent ] ] content
+
+
+showContactFormField index mdl label field msg =
+    Textfield.render Models.Mdl
+        [ index ]
+        mdl
+        [ Textfield.label label
+        , Textfield.floatingLabel
+        , Textfield.value field
+        , Options.onInput msg
+        ]
+        []
 
 
 showCard innerContent =
@@ -128,26 +139,6 @@ showCard innerContent =
             innerContent
         ]
     ]
-
-
-
---contactCard =
---    Card.view
---        [ css "width" "256px" ]
---        [ Card.title
---            [ css "flex-direction" "column" ]
---            [ Card.head [] [ text "Copenhagen" ]
---            , Card.subhead [] [ text "Wed, 14:55, mostly cloudy" ]
---              --        , Options.div
---              --            [ css "padding" "2rem 2rem 0 2rem" ]
---              --            [ Options.span
---              --                [ Typography.display4
---              --                , Color.text Color.primary
---              --                ]
---              --                [ text "21°" ]
---              --            ]
---            ]
---        ]
 
 
 viewLink : String -> Html msg

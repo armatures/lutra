@@ -1,4 +1,4 @@
-module Models exposing (Route(..), Model, Msg(..))
+module Models exposing (Route(..), Model, Msg(..), ContactMsg(..), Contact)
 
 import Material
 import Navigation
@@ -7,8 +7,23 @@ import Navigation
 type alias Model =
     { route : Route
     , mdl : Material.Model
-    , contact : { email : String }
+    , contact : Contact
     }
+
+
+type alias Contact =
+    { email : String
+    , firstName : String
+    , lastName : String
+    , message : String
+    }
+
+
+type ContactMsg
+    = ContactEmailMsg String
+    | ContactFirstNameMsg String
+    | ContactLastNameMsg String
+    | ContactMessageMsg String
 
 
 type Route
@@ -22,4 +37,4 @@ type Msg
     | UrlChange Navigation.Location
     | Mdl (Material.Msg Msg)
     | SelectTab Int
-    | ContactEmailMsg String
+    | ContactFormMsg ContactMsg

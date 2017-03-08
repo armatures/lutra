@@ -89,7 +89,7 @@ viewPageContent model =
                 ContactRoute ->
                     showCard
                         [ form
-                            [ attribute "action" "https://formspree.io/charlie@lutra.com"
+                            [ attribute "action" "https://formspree.io/charlie@lutra.tech"
                             , attribute "method" "POST"
                             ]
                             [ showContactFormField 0

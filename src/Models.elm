@@ -24,6 +24,7 @@ type ContactMsg
     | ContactFirstNameMsg String
     | ContactLastNameMsg String
     | ContactMessageMsg String
+    | ContactSubmit
 
 
 type Route

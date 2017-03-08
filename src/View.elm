@@ -20,6 +20,7 @@ import Material.Options as Options
 import Routing exposing (routeList, routeStrings)
 import Material.Color as Color
 import Material.Scheme
+import Material.Button as Button
 
 
 { id, class, classList } =
@@ -112,6 +113,14 @@ viewPageContent model =
                             , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
                             ]
                             []
+                        , Button.render Mdl
+                            [ 4 ]
+                            model.mdl
+                            [ Button.raised
+                            , Button.colored
+                            , Options.onClick (ContactFormMsg ContactSubmit)
+                            ]
+                            [ text "Submit" ]
                         ]
 
                 NotFoundRoute ->

@@ -72,3 +72,6 @@ updateContact msg contact =
 
         ContactMessageMsg message ->
             { contact | message = message }
+
+        ContactSubmit ->
+            Contact "" "" "" ""

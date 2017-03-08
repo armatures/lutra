@@ -1,5 +1,6 @@
 module View exposing (root)
 
+import Char
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
 import Html exposing (Html, a, div, form, h1, h3, img, input, label, li, p, span, text)
@@ -87,43 +88,49 @@ viewPageContent model =
 
                 ContactRoute ->
                     showCard
-                        [ showContactFormField 0
-                            model.mdl
-                            "Email"
-                            model.contact.email
-                            "email"
-                            (ContactFormMsg << ContactEmailMsg)
-                        , showContactFormField 1
-                            model.mdl
-                            "First Name"
-                            model.contact.firstName
-                            "text"
-                            (ContactFormMsg << ContactFirstNameMsg)
-                        , showContactFormField 2
-                            model.mdl
-                            "Last Name"
-                            model.contact.lastName
-                            "text"
-                            (ContactFormMsg << ContactLastNameMsg)
-                        , Textfield.render Models.Mdl
-                            [ 3 ]
-                            model.mdl
-                            [ Textfield.textarea
-                            , Textfield.label "Message"
-                            , Textfield.floatingLabel
-                            , Textfield.value model.contact.message
-                            , Options.onInput (ContactFormMsg << ContactMessageMsg)
-                            , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
+                        [ form
+                            [ attribute "action" "https://formspree.io/charlie@lutra.com"
+                            , attribute "method" "POST"
                             ]
-                            []
-                        , Button.render Mdl
-                            [ 4 ]
-                            model.mdl
-                            [ Button.raised
-                            , Button.colored
-                            , Options.onClick (ContactFormMsg ContactSubmit)
+                            [ showContactFormField 0
+                                model.mdl
+                                "Email"
+                                model.contact.email
+                                "email"
+                                (ContactFormMsg << ContactEmailMsg)
+                            , showContactFormField 1
+                                model.mdl
+                                "First Name"
+                                model.contact.firstName
+                                "text"
+                                (ContactFormMsg << ContactFirstNameMsg)
+                            , showContactFormField 2
+                                model.mdl
+                                "Last Name"
+                                model.contact.lastName
+                                "text"
+                                (ContactFormMsg << ContactLastNameMsg)
+                            , Textfield.render Models.Mdl
+                                [ 3 ]
+                                model.mdl
+                                [ Textfield.textarea
+                                , Textfield.label "Message"
+                                , Textfield.floatingLabel
+                                , Textfield.value model.contact.message
+                                , Options.onInput (ContactFormMsg << ContactMessageMsg)
+                                , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
+                                , Options.attribute <| Html.Attributes.attribute "name" "message"
+                                ]
+                                []
+                            , Button.render Mdl
+                                [ 4 ]
+                                model.mdl
+                                [ Button.raised
+                                , Button.colored
+                                , Options.onClick (ContactFormMsg ContactSubmit)
+                                ]
+                                [ text "Submit" ]
                             ]
-                            [ text "Submit" ]
                         ]
 
                 NotFoundRoute ->
@@ -143,6 +150,7 @@ showContactFormField index mdl label field inputType msg =
         , Textfield.value field
         , Options.onInput msg
         , Options.attribute <| Html.Attributes.type_ inputType
+        , Options.attribute <| Html.Attributes.attribute "name" <| String.filter Char.isLower <| String.toLower label
         ]
         []
 

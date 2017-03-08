@@ -68,17 +68,17 @@ viewPageContent model =
                 AboutRoute ->
                     [ h3 [] [ text "About Lutra:" ]
                     , p [] [ text """
-                                    Lutra is a software consultancy that aims to enable clients as they improve their software development
-                                    process. If you own a software product you need help building, have an idea you'd like to make reality,
-                                    or have a team of developers that aren't delivering reliably, we can help you build your team and your product.
-                                    Using modern agile practices, features will be predictably delivered on time, with no surprises for
-                                    developers or product owners.
+                                    Lutra is a software consultancy that aims to enable clients as they improve their
+                                    software development process. If you own a software product you need help building,
+                                    or have an idea for one, we can help you build your team and your product.
+                                    Using modern agile tools and practices, features will be predictably delivered
+                                    on time, with no surprises for developers or product owners.
                                     """ ]
                     , h3 [] [ text "About Charlie:" ]
                     , p [] [ text """
                                     Charlie has experience consulting in Ruby on Rails,
                                     C#, Java, and many flavors of JavaScript, and has been writing software for clients ranging from startups to
-                                    Fortune 500 players for over 5 years.
+                                    Fortune 500 companies for over 5 years.
                                     In his spare time, Charlie develops applications in opinionated languages like Elm and Haskell,
                                     but is interested in helping you develop and deliver your project on schedule and in a sustainable way
                                     for your team.
@@ -91,16 +91,19 @@ viewPageContent model =
                             model.mdl
                             "Email"
                             model.contact.email
+                            "email"
                             (ContactFormMsg << ContactEmailMsg)
                         , showContactFormField 1
                             model.mdl
                             "First Name"
                             model.contact.firstName
+                            "text"
                             (ContactFormMsg << ContactFirstNameMsg)
                         , showContactFormField 2
                             model.mdl
                             "Last Name"
                             model.contact.lastName
+                            "text"
                             (ContactFormMsg << ContactLastNameMsg)
                         , Textfield.render Models.Mdl
                             [ 3 ]
@@ -131,7 +134,7 @@ viewPageContent model =
         div [ class [ PageContent ] ] content
 
 
-showContactFormField index mdl label field msg =
+showContactFormField index mdl label field inputType msg =
     Textfield.render Models.Mdl
         [ index ]
         mdl
@@ -139,6 +142,7 @@ showContactFormField index mdl label field msg =
         , Textfield.floatingLabel
         , Textfield.value field
         , Options.onInput msg
+        , Options.attribute <| Html.Attributes.type_ inputType
         ]
         []
 

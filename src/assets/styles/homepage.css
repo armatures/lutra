@@ -1,0 +1,40 @@
+.lutraHeaderLinks {
+    display: flex;
+}
+
+.lutraHeaderLinks > a {
+    padding: 20px;
+    vertical-align: middle;
+}
+
+.lutraLutraLogo {
+    max-height: 120px;
+}
+
+.lutraPageContent {
+    padding: 30px;
+}
+
+.lutraContactForm {
+    box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+input {
+    margin: 15px;
+    background-color: rgb(245, 245, 245);
+    box-shadow: none;
+    border: 1px solid rgb(200, 200, 200);
+    height: 40px;
+    width: 260px;
+    padding: 10px;
+}
+
+body {
+    margin: 0px;
+    font-family: "Quicksand", Helvetica, sans-serif;
+}
+
+h3 {
+    font-family: "Rubik", Helvetica, sans-serif;
+}

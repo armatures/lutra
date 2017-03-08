@@ -3,3 +3,5 @@ elm-stuff/
 index.html
 assets/styles/
 .DS_Store
+dist
+node_modules

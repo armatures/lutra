@@ -79,8 +79,8 @@ viewPageContent model =
                                     Charlie has experience consulting in Ruby on Rails,
                                     C#, Java, and many flavors of JavaScript, and has been writing software for clients ranging from startups to
                                     Fortune 500 companies for over 5 years.
-                                    In his spare time, Charlie develops applications in opinionated languages like Elm and Haskell,
-                                    but is interested in helping you develop and deliver your project on schedule and in a sustainable way
+                                    In his spare time, Charlie develops applications in opinionated languages like Elm and Haskell.
+                                    He is interested in helping you develop and deliver your project on schedule and in a sustainable way
                                     for your team.
                                     """ ]
                     ]

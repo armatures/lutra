@@ -7,4 +7,7 @@ elm-build:
 	/usr/local/bin/elm-make $(project_root)src/Main.elm --output=$(project_root)index.html
 
 css: elm-build
-	/usr/local/bin/elm-css $(project_root)src/Stylesheets.elm --output=$(project_root)assets/styles/
+	/usr/local/bin/elm-css $(project_root)src/Stylesheets.elm --output=$(project_root)src/assets/styles/
+
+build-prod:
+	$(project_root)node_modules/webpack/bin/webpack.js

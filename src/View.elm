@@ -130,6 +130,16 @@ viewPageContent model =
                                 , Options.onClick (ContactFormMsg ContactSubmit)
                                 ]
                                 [ text "Submit" ]
+                            , Textfield.render Models.Mdl
+                                [ 5 ]
+                                model.mdl
+                                [ css "display" "none"
+                                  --                                css "display" "hidden"
+                                , Textfield.value model.contact.email
+                                , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
+                                , Options.attribute <| Html.Attributes.attribute "name" "_replyto"
+                                ]
+                                []
                             ]
                         ]
 

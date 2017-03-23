@@ -156,7 +156,10 @@ showContactFormField index mdl label field inputType msg =
 
 
 showCard innerContent =
-    [ Card.view [ Elevation.e8 ]
+    [ Card.view
+        [ Elevation.e8
+        , css "margin" "30px auto"
+        ]
         [ Card.title
             [ css "flex-direction" "column" ]
             [ Card.head [] [ text "Let's Chat" ]

@@ -11,3 +11,6 @@ css: elm-build
 
 build-prod:
 	$(project_root)node_modules/webpack/bin/webpack.js
+
+deploy:
+	cd dist && cf push lutra -m 32M

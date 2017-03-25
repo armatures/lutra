@@ -10,6 +10,7 @@ type CssClasses
     | PageWrapper
     | Header
     | PageContent
+    | ContactContent
     | LutraLogo
     | ContactForm
 
@@ -27,11 +28,17 @@ css =
                 ]
             ]
         , class LutraLogo
-            [ maxHeight (px 120)
+            [ maxHeight (px 100)
             ]
-        , class PageWrapper []
+        , class PageWrapper
+            [ backgroundColor (rgb 155 0 0)
+            ]
         , class PageContent
-            [ padding (px 30)
+            []
+        , class ContactContent
+            [ padding2 (px 10) zero
+            , backgroundImage (url "assets/city1.jpg")
+            , backgroundSize cover
             ]
         , class ContactForm
             [ boxShadow5 zero zero (px 15) (px 10) (rgba 0 0 0 0.1)

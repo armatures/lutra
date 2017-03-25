@@ -8,11 +8,13 @@
 }
 
 .lutraLutraLogo {
-    max-height: 120px;
+    max-height: 100px;
 }
 
-.lutraPageContent {
-    padding: 30px;
+.lutraContactContent {
+    padding: 10px 0;
+    background-image: url(assets/city1.jpg);
+    background-size: cover;
 }
 
 .lutraContactForm {

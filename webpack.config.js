@@ -33,7 +33,7 @@ var common = {
 
     module: {
         loaders: [{
-            test: /\.(eot|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?/,
+            test: /\.(eot|svg|jpg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?/,
             loader: 'file-loader'
         }],
 

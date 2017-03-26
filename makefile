@@ -14,3 +14,6 @@ build-prod:
 
 deploy:
 	cd dist && cf push lutra -m 32M
+
+dev-server:
+	npm start

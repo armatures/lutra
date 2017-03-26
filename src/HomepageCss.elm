@@ -34,7 +34,7 @@ css =
             [ backgroundColor (rgb 155 0 0)
             ]
         , class PageContent
-            []
+            [ padding2 zero (px 30) ]
         , class ContactContent
             [ padding2 (px 10) zero
             , backgroundImage (url "assets/city1.jpg")
@@ -42,8 +42,6 @@ css =
             ]
         , class ContactForm
             [ boxShadow5 zero zero (px 15) (px 10) (rgba 0 0 0 0.1)
-              --            , padding (px 30)
-              --            , flexGrow (num 0)
             , margin2 zero auto
             ]
         , input

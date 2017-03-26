@@ -3,7 +3,7 @@ module View exposing (root)
 import Char
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
-import Html exposing (Html, a, div, form, h1, h3, img, input, label, li, p, span, text)
+import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
 import List.Extra exposing (findIndex)
 import Material
@@ -105,6 +105,26 @@ viewAboutRoute model =
                     In his spare time, Charlie develops applications in opinionated languages like Elm and Haskell.
                     He is interested in helping you develop and deliver your project on schedule and in a sustainable way
                     for your team.
+                    """ ]
+    , h4 [] [ text "Charlie on Front-end Development:" ]
+    , p [] [ text """
+                    I have developed application front ends using Angular, Angular 2, Elm, BackboneJS, React and Ember.
+                     I have also rendered things to a page in production applications using Ruby/Rails/ERB,
+                     or Razor and ASP.NET, but when people talk about the front-end in 2017, I assume we're talking
+                     about Javascript frontends for the most part. I prefer Elm (with React coming in second) because
+                     of its compile-time assurance of correctness, elegant type system, and time-traveling debugging.
+                     It is much more pleasant than raw Javascript (or typescript), but I understand most shops are not
+                     sold on it yet. If not Elm, I prefer React, because its unidirectional data flow makes for more
+                     maintainable applications.
+                    """ ]
+    , h4 [] [ text "Charlie on Source Control and Branching Strategies:" ]
+    , p [] [ text """
+                    I prefer Git. Git is powerful, simple, and flexible. I've also used TFS and Perforce,
+                     each of which seems less powerful and less simple from my experience of ~9 months with each of them.
+                     I've done feature branches and pull requests for larger teams, or just pushed things to master on
+                     smaller teams. I've worked on teams ranging from 1 pair of developers to upwards of 20 developers
+                     working across different countries, and smaller teams obviously don't need to bother with the same
+                     processes that larger teams have.
                     """ ]
     ]
 

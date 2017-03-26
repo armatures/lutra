@@ -11,6 +11,14 @@
     max-height: 100px;
 }
 
+.lutraPageWrapper {
+    background-color: rgb(155, 0, 0);
+}
+
+.lutraPageContent {
+    padding: 0 30px;
+}
+
 .lutraContactContent {
     padding: 10px 0;
     background-image: url(assets/city1.jpg);

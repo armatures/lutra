@@ -12,6 +12,7 @@ matchers =
         [ map AboutRoute top
         , map AboutRoute (s "about")
         , map ContactRoute (s "contact")
+        , map ThanksRoute (s "thanks")
         ]
 
 
@@ -36,6 +37,9 @@ routeAsString r =
 
         ContactRoute ->
             "Contact"
+
+        ThanksRoute ->
+            "Thanks"
 
         NotFoundRoute ->
             "Route Not Found"

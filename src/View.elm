@@ -11,7 +11,7 @@ import Material.Grid exposing (Device(All), cell, grid, maxWidth, size)
 import Material.Options exposing (css)
 import Stylesheets exposing (..)
 import Html.CssHelpers
-import Models exposing (Msg(..), ContactMsg(..), Route(AboutRoute, ContactRoute, NotFoundRoute))
+import Models exposing (ContactMsg(..), Msg(..), Route(AboutRoute, ContactRoute, NotFoundRoute, ThanksRoute))
 import Material.Layout as Layout
 import Models
 import Material.Card as Card
@@ -71,6 +71,9 @@ viewPageContent model =
 
                 ContactRoute ->
                     viewContactRoute model
+
+                ThanksRoute ->
+                    viewThanksRoute model
 
                 NotFoundRoute ->
                     [ h3 [] [ text "Route not found" ]
@@ -174,16 +177,30 @@ viewContactRoute model =
                 , Options.onClick (ContactFormMsg ContactSubmit)
                 ]
                 [ text "Submit" ]
-            , Textfield.render Models.Mdl
-                [ 5 ]
-                model.mdl
-                [ css "display" "none"
-                , Textfield.value model.contact.email
-                , Options.attribute <| Html.Attributes.attribute "name" "_replyto"
-                ]
-                []
+            , hiddenField 5 model model.contact.email "_replyto"
+            , hiddenField 6 model "#thanks" "_next"
+            , hiddenField 7 model "New contact through Lutra.tech" "_subject"
             ]
         ]
+
+
+viewThanksRoute model =
+    [ h4 [] [ text "Thanks for reaching out!" ]
+    , p [] [ text """
+            We'll be in touch in the next day or so.
+            """ ]
+    ]
+
+
+hiddenField index model value fieldName =
+    Textfield.render Models.Mdl
+        [ index ]
+        model.mdl
+        [ css "display" "none"
+        , Textfield.value value
+        , Options.attribute <| Html.Attributes.attribute "name" fieldName
+        ]
+        []
 
 
 showContactFormField index mdl label field inputType msg =

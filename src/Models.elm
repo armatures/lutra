@@ -30,6 +30,7 @@ type ContactMsg
 type Route
     = AboutRoute
     | ContactRoute
+    | ThanksRoute
     | NotFoundRoute
 
 

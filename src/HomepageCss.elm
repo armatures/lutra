@@ -35,10 +35,14 @@ css =
             ]
         , class PageContent
             [ padding2 zero (px 30) ]
+        , notAPhone
+            [ class CardWithContent
+                [ backgroundImage (url "assets/city1.jpg")
+                , backgroundSize cover
+                ]
+            ]
         , class CardWithContent
             [ padding2 (px 10) zero
-            , backgroundImage (url "assets/city1.jpg")
-            , backgroundSize cover
             , boxSizing borderBox
             , minHeight <| pct 100
             ]
@@ -63,3 +67,11 @@ css =
             [ fontFamilies [ qt ("Rubik"), "Helvetica", .value sansSerif ]
             ]
         ]
+
+
+notAPhone =
+    mediaQuery "screen and ( min-width: 600px )"
+
+
+phoneOnly =
+    mediaQuery "screen and ( max-width: 600px )"

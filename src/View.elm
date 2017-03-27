@@ -55,7 +55,6 @@ viewHeader model =
     div []
         [ img
             [ attribute "src" "assets/lutra-logo.svg"
-            , styles [ padding (px 10) ]
             , class [ LutraLogo ]
             ]
             []
@@ -123,7 +122,7 @@ viewAboutRoute model =
 
 
 viewContactRoute model =
-    div [ class [ CardWithContent ] ]
+    div [ class [ CardBackground ] ]
         [ showCard
             "Let's Chat"
             "We'll build something great"
@@ -179,7 +178,7 @@ viewContactRoute model =
 
 
 viewThanksRoute model =
-    div [ class [ CardWithContent ] ] <|
+    div [ class [ CardBackground ] ] <|
         [ showCard
             "Thanks for reaching out!"
             "We'll be in touch in the next day or so."
@@ -215,9 +214,7 @@ showContactFormField index mdl label field inputType msg =
 showCard head subhead innerContent =
     Card.view
         [ Elevation.e8
-        , css "margin" "10px auto"
-        , css "min-width" "400px"
-        , css "padding" "20px"
+        , Options.attribute <| class [ CenteredCard ]
         ]
         [ Card.title
             [ css "flex-direction" "column" ]

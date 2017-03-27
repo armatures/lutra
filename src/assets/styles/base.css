@@ -1,2 +1,4 @@
 .elm-overlay {z-index: 1000;}
 form .mdl-textfield { width: 100%; }
+.mdl-layout__tab-bar-right-button > i.material-icons { display: none;  }
+main { height: 100% }

@@ -10,7 +10,7 @@ type CssClasses
     | PageWrapper
     | Header
     | PageContent
-    | ContactContent
+    | CardWithContent
     | LutraLogo
     | ContactForm
 
@@ -35,10 +35,12 @@ css =
             ]
         , class PageContent
             [ padding2 zero (px 30) ]
-        , class ContactContent
+        , class CardWithContent
             [ padding2 (px 10) zero
             , backgroundImage (url "assets/city1.jpg")
             , backgroundSize cover
+            , boxSizing borderBox
+            , minHeight <| pct 100
             ]
         , class ContactForm
             [ boxShadow5 zero zero (px 15) (px 10) (rgba 0 0 0 0.1)

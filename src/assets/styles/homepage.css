@@ -19,10 +19,12 @@
     padding: 0 30px;
 }
 
-.lutraContactContent {
+.lutraCardWithContent {
     padding: 10px 0;
     background-image: url(assets/city1.jpg);
     background-size: cover;
+    box-sizing: border-box;
+    min-height: 100%;
 }
 
 .lutraContactForm {

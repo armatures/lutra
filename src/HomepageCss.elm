@@ -17,7 +17,7 @@ type CssClasses
 
 
 css =
-    (stylesheet << namespace "lutra")
+    (stylesheet << namespace "lutra") <|
         [ class Header []
         , class HeaderLinks
             [ displayFlex
@@ -37,12 +37,6 @@ css =
             ]
         , class PageContent
             [ padding2 zero (px 30) ]
-        , notAPhone
-            [ class CardBackground
-                [ backgroundImage (url "assets/city1.jpg")
-                , backgroundSize cover
-                ]
-            ]
         , class CardBackground
             [ padding2 (px 10) zero
             , boxSizing borderBox
@@ -74,11 +68,32 @@ css =
             [ fontFamilies [ qt ("Rubik"), "Helvetica", .value sansSerif ]
             ]
         ]
+            ++ (scaledBackgroundImage CardBackground)
+
+
+scaledBackgroundImage class_ =
+    [ notAPhone [ class class_ [ backgroundSize cover ] ]
+    , small [ class class_ [ backgroundImage (url "assets/city1-1500-1000.jpg") ] ]
+    , medium [ class class_ [ backgroundImage (url "assets/city1-2400-1600.jpg") ] ]
+    , largest [ class class_ [ backgroundImage (url "assets/city1-3600-2400.jpg") ] ]
+    ]
+
+
+phoneOnly =
+    mediaQuery "screen and ( max-width: 600px )"
 
 
 notAPhone =
     mediaQuery "screen and ( min-width: 600px )"
 
 
-phoneOnly =
-    mediaQuery "screen and ( max-width: 600px )"
+small =
+    mediaQuery "screen and ( max-width: 1500px )"
+
+
+medium =
+    mediaQuery "screen and ( min-width: 1501px ) and ( max-width: 2400px )"
+
+
+largest =
+    mediaQuery "screen and ( min-width: 2401px )"

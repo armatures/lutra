@@ -1,6 +1,5 @@
 module Main exposing (..)
 
-import Html
 import Material
 import Models exposing (Model, Route(AboutRoute))
 import Navigation exposing (modifyUrl)
@@ -18,7 +17,7 @@ main =
         , view = View.root
         }
 
-
+init : Navigation.Location -> ( { contact : Contact, mdl : Material.Model, route : Route }, Cmd msg )
 init location =
     { route = Routing.parseLocation location
     , mdl = Material.model

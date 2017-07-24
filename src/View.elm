@@ -67,7 +67,7 @@ viewPageContent model =
             viewAboutRoute model
 
         ContactRoute ->
-            viewContactRoute model
+            viewContactRoute model.mdl model.contact
 
         ThanksRoute ->
             viewThanksRoute model
@@ -121,7 +121,7 @@ viewAboutRoute model =
         ]
 
 
-viewContactRoute model =
+viewContactRoute mdl contact =
     div [ class [ CardBackground ] ]
         [ showCard
             "Let's Chat"
@@ -132,30 +132,30 @@ viewContactRoute model =
                 , attribute "padding" "10px"
                 ]
                 [ showContactFormField 0
-                    model.mdl
+                    mdl
                     "Email"
-                    model.contact.email
+                    contact.email
                     "email"
                     (ContactFormMsg << ContactEmailMsg)
                 , showContactFormField 1
-                    model.mdl
+                    mdl
                     "First Name"
-                    model.contact.firstName
+                    contact.firstName
                     "text"
                     (ContactFormMsg << ContactFirstNameMsg)
                 , showContactFormField 2
-                    model.mdl
+                    mdl
                     "Last Name"
-                    model.contact.lastName
+                    contact.lastName
                     "text"
                     (ContactFormMsg << ContactLastNameMsg)
                 , Textfield.render Models.Mdl
                     [ 3 ]
-                    model.mdl
+                    mdl
                     [ Textfield.textarea
                     , Textfield.label "Message"
                     , Textfield.floatingLabel
-                    , Textfield.value model.contact.message
+                    , Textfield.value contact.message
                     , Options.onInput (ContactFormMsg << ContactMessageMsg)
                     , Options.attribute <| Html.Attributes.style [ ( "minHeight", "150px" ) ]
                     , Options.attribute <| Html.Attributes.attribute "name" "message"
@@ -163,15 +163,15 @@ viewContactRoute model =
                     []
                 , Button.render Mdl
                     [ 4 ]
-                    model.mdl
+                    mdl
                     [ Button.raised
                     , Button.colored
                     , Options.onClick (ContactFormMsg ContactSubmit)
                     ]
                     [ text "Submit" ]
-                , hiddenField 5 model model.contact.email "_replyto"
-                , hiddenField 6 model "#thanks" "_next"
-                , hiddenField 7 model "New contact through Lutra.tech" "_subject"
+                , hiddenField 5 mdl contact.email "_replyto"
+                , hiddenField 6 mdl "#thanks" "_next"
+                , hiddenField 7 mdl "New contact through Lutra.tech" "_subject"
                 ]
             ]
         ]
@@ -186,10 +186,10 @@ viewThanksRoute model =
         ]
 
 
-hiddenField index model value fieldName =
+hiddenField index mdl value fieldName =
     Textfield.render Models.Mdl
         [ index ]
-        model.mdl
+        mdl
         [ css "display" "none"
         , Textfield.value value
         , Options.attribute <| Html.Attributes.attribute "name" fieldName

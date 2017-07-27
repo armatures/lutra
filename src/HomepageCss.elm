@@ -4,16 +4,21 @@ import Css exposing (..)
 import Css.Namespace exposing (namespace)
 import Css.Elements exposing (a, body, h3, input)
 
-
 type CssClasses
     = HeaderLinks
     | PageWrapper
     | Header
-    | PageContent
+    | SideMargins
     | CardBackground
+    | LandingImage
+    | LandingImageContent
     | LutraLogo
     | ContactForm
     | CenteredCard
+    | DrawerIcon
+    | CustomerTypeContent
+    | Caption
+    | ColoredListItem
 
 
 css =
@@ -35,13 +40,8 @@ css =
         , class PageWrapper
             [ backgroundColor (rgb 155 0 0)
             ]
-        , class PageContent
+        , class SideMargins
             [ padding2 zero (px 30) ]
-        , class CardBackground
-            [ padding2 (px 10) zero
-            , boxSizing borderBox
-            , minHeight <| pct 100
-            ]
         , class CenteredCard
             [ margin2 (px 10) auto
             , minWidth (px 400)
@@ -67,9 +67,44 @@ css =
         , h3
             [ fontFamilies [ qt ("Rubik"), "Helvetica", .value sansSerif ]
             ]
+        , class CardBackground
+            [ padding2 (px 10) zero
+            , boxSizing borderBox
+            , minHeight <| pct 100
+            ]
+        , class LandingImage
+            [ backgroundSize cover
+            , backgroundImage (url "assets/todd-quackenbush-701.jpg")
+            , minHeight (pct 50)
+            , backgroundPosition2 zero (px -150)
+            ]
+        , class LandingImageContent
+            [ minHeight (px 460)
+            , padding2 (px 100)(px 400)
+            , color white
+            ]
+        , class CustomerTypeContent
+            [ padding (px 200)]
+        , class DrawerIcon
+            [ maxWidth (px 100)
+            , flex auto
+            , borderRight3 (px 3) solid (rgb 255 255 255)
+            ]
+        , class Caption
+            [ padding (px 10)
+            , flex auto
+            ]
+        , class ColoredListItem
+            [ backgroundColor primary
+            , color white
+            , displayFlex
+            , margin <| px 10
+            ]
         ]
             ++ (scaledBackgroundImage CardBackground)
 
+primary = rgb 0 188 212
+white = rgb 255 255 255
 
 scaledBackgroundImage class_ =
     [ notAPhone [ class class_ [ backgroundSize cover ] ]

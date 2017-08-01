@@ -98,6 +98,8 @@ css =
             ]
         , class Caption
             [ padding (px 10)
+            , textAlign center
+            , fontSize (px 18)
             , flex auto
             ]
         , class ColoredListItem

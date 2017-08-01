@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Material
-import Models exposing (Model, Route(AboutRoute))
+import Models exposing (Model, Route(AboutRoute), ProjectType(InitialProjectType))
 import Navigation exposing (modifyUrl)
 import Routing exposing (routeAsString, routeAsUrlFragment, routeByIndex)
 import Models exposing (..)
@@ -17,7 +17,7 @@ main =
         , view = View.root
         }
 
-init : Navigation.Location -> ( { contact : Contact, mdl : Material.Model, route : Route }, Cmd msg )
+init : Navigation.Location -> ( Model, Cmd msg )
 init location =
     { route = Routing.parseLocation location
     , mdl = Material.model
@@ -27,6 +27,7 @@ init location =
         , lastName = ""
         , message = ""
         }
+    , projectType = InitialProjectType
     }
         ! []
 
@@ -53,8 +54,12 @@ update msg model =
         ContactFormMsg msg_ ->
             { model | contact = (updateContact msg_ model.contact) } ! []
 
+        ChangeProjectType t ->
+            {model | projectType = t} ! []
+
         Mdl msg_ ->
             Material.update Mdl msg_ model
+
 
 
 updateContact : ContactMsg -> Contact -> Contact

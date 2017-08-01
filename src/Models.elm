@@ -1,4 +1,4 @@
-module Models exposing (Route(..), Model, Msg(..), ContactMsg(..), Contact)
+module Models exposing (Route(..), Model, Msg(..), ContactMsg(..), Contact, ProjectType(..))
 
 import Material
 import Navigation
@@ -8,6 +8,7 @@ type alias Model =
     { route : Route
     , mdl : Material.Model
     , contact : Contact
+    , projectType : ProjectType
     }
 
 
@@ -33,6 +34,13 @@ type Route
     | ThanksRoute
     | NotFoundRoute
 
+type ProjectType
+    = NewProject
+    | ExistingProject
+    | OutOfHand
+    | Sentient
+    | InitialProjectType
+
 
 type Msg
     = NoOp
@@ -40,3 +48,4 @@ type Msg
     | Mdl (Material.Msg Msg)
     | SelectTab Int
     | ContactFormMsg ContactMsg
+    | ChangeProjectType ProjectType

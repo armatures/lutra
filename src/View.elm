@@ -7,16 +7,12 @@ import ViewAboutRoute exposing (viewAboutRoute)
 import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
 import List.Extra exposing (findIndex)
-import Material
-import Material.Grid exposing (Cell, Device(All), cell, grid, maxWidth, size)
 import Material.Options exposing (Style, css)
-import Stylesheets exposing (..)
 import Html.CssHelpers
 import Models exposing (ContactMsg(..), Msg(..), Route(AboutRoute, ContactRoute, NotFoundRoute, ThanksRoute))
 import Material.Layout as Layout
 import Models
 import Material.Card as Card
-import Material.List as Lists
 import Material.Elevation as Elevation
 import Material.Textfield as Textfield
 import Material.Options as Options
@@ -42,8 +38,7 @@ root model =
             , Layout.onSelectTab SelectTab
             , Layout.selectedTab <| Maybe.withDefault -1 <| findIndex ((==) model.route) routeList
             ]
-            { header =
-                [ viewHeader model ]
+            { header = [ ]
             , drawer =
                 []
             , tabs = ( List.map text routeStrings, [] )
@@ -51,16 +46,6 @@ root model =
                 [ viewPageContent model
                 ]
             }
-
-
-viewHeader model =
-    div []
-        [ img
-            [ attribute "src" "assets/lutra-logo.svg"
-            , class [ LutraLogo ]
-            ]
-            []
-        ]
 
 
 viewPageContent model =
@@ -155,7 +140,6 @@ hiddenField index mdl value fieldName =
         , Options.attribute <| Html.Attributes.attribute "name" fieldName
         ]
         []
-
 
 showContactFormField index mdl label field inputType msg =
     Textfield.render Models.Mdl

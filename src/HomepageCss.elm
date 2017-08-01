@@ -74,17 +74,23 @@ css =
             ]
         , class LandingImage
             [ backgroundSize cover
-            , backgroundImage (url "assets/todd-quackenbush-701.jpg")
+            , backgroundImage (url "assets/markus-spiske-37930.jpg")
+--            , backgroundColor (rgb 30 30 30)
             , minHeight (pct 50)
-            , backgroundPosition2 zero (px -150)
+            , backgroundPosition center
             ]
         , class LandingImageContent
-            [ minHeight (px 460)
-            , padding2 (px 100)(px 400)
+            [
+            textAlign center
+--            , minHeight (vh 50)
+            , padding2 (px 100)(px 100)
             , color white
             ]
         , class CustomerTypeContent
-            [ padding (px 200)]
+            [ verticalAlign center
+            , padding2 (pct 10) (pct 10)
+            , textAlign center
+            ]
         , class DrawerIcon
             [ maxWidth (px 100)
             , flex auto
@@ -99,6 +105,10 @@ css =
             , color white
             , displayFlex
             , margin <| px 10
+            , cursor pointer
+            ]
+        , selector "ul"
+            [ padding zero
             ]
         ]
             ++ (scaledBackgroundImage CardBackground)

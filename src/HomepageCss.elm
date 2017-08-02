@@ -77,6 +77,7 @@ css =
             , backgroundImage (url "assets/markus-spiske-37930.jpg")
 --            , backgroundColor (rgb 30 30 30)
             , minHeight (pct 50)
+            , marginBottom (px 40)
             , backgroundPosition center
             ]
         , class LandingImageContent

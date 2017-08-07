@@ -54,48 +54,48 @@ customerTypeList mdl projectType =
 
 
 customerTypeContent mdl projectType =
-    case projectType of
-        InitialProjectType ->
-            div [ class [ CustomerTypeContent ] ]
-                [ h3 [] [ text "Help for all project types" ]
-                , h4 [] [ text "choose your project from the list on the left" ]
-                ]
+    let
+        content =
+            case projectType of
+                InitialProjectType ->
+                    [ h3 [] [ text "Help for all project types" ]
+                    , h4 [] [ text "choose your project from the list on the left" ]
+                    ]
 
-        NewProject ->
-            div [ class [ CustomerTypeContent ] ]
-                [ h3 [] [ text "A new project" ]
-                , p [] [ text """If you're unsure how to start development on your new project,
+                NewProject ->
+                    [ h3 [] [ text "A new project" ]
+                    , p [] [ text """If you're unsure how to start development on your new project,
             we can help you manage your product: create a backlog, prioritize features,
             and validate hypotheses about your users' needs.
             """ ]
-                , p [] [ text "If you already know what you want, we can start building right away." ]
-                , contactButton mdl
-                ]
+                    , p [] [ text "If you already know what you want, we can start building right away." ]
+                    , contactButton mdl
+                    ]
 
-        ExistingProject ->
-            div [ class [ CustomerTypeContent ] ]
-                [ h3 [] [ text "An existing project" ]
-                , p [] [ text """Maybe you're getting more traffic than you can handle (good problems, right?),
+                ExistingProject ->
+                    [ h3 [] [ text "An existing project" ]
+                    , p [] [ text """Maybe you're getting more traffic than you can handle (good problems, right?),
                 or maybe your existing project isn't as easy to add features to as it used to be.""" ]
-                , p [] [ text "We've been there, and can help you with your problems, good or bad." ]
-                , contactButton mdl
-                ]
+                    , p [] [ text "We've been there, and can help you with your problems, good or bad." ]
+                    , contactButton mdl
+                    ]
 
-        OutOfHand ->
-            div [ class [ CustomerTypeContent ] ]
-                [ h3 [] [ text "A troublesome project" ]
-                , p [] [ text """If your releases are lagging farther and farther back,
+                OutOfHand ->
+                    [ h3 [] [ text "A troublesome project" ]
+                    , p [] [ text """If your releases are lagging farther and farther back,
              or if you're accumulating bugs faster than you're fixing them, we can help.
             """ ]
-                , contactButton mdl
-                ]
+                    , contactButton mdl
+                    ]
 
-        Sentient ->
-            div [ class [ CustomerTypeContent ] ]
-                [ h3 [] [ text "Congratulations!" ]
-                , p [] [ text "Welcome to parenthood: contact me for advice on caring for your newly-hatched singularity." ]
-                , contactButton mdl
-                ]
+                Sentient ->
+                    [ h3 [] [ text "Congratulations!" ]
+                    , p [] [ text "Welcome to parenthood: contact me for advice on caring for your newly-hatched singularity." ]
+                    , contactButton mdl
+                    ]
+    in
+        div [ class [ CustomerTypeContent ] ]
+            content
 
 
 contactButton mdl =

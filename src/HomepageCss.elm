@@ -76,7 +76,6 @@ css =
             ]
         , class LandingImage
             [ backgroundSize cover
-            , backgroundImage (url "assets/markus-spiske-37930.jpg")
             , minHeight (pct 50)
             , marginBottom (px 40)
             , backgroundPosition center
@@ -115,7 +114,8 @@ css =
             [ padding zero
             ]
         ]
-            ++ (scaledBackgroundImage CardBackground)
+            ++ (scaledBackgroundImage CardBackground "city1")
+            ++ (scaledBackgroundImage LandingImage "landing")
 
 
 primary =
@@ -130,11 +130,11 @@ lightGrey =
     rgb 200 200 200
 
 
-scaledBackgroundImage class_ =
+scaledBackgroundImage class_ imageName =
     [ notAPhone [ class class_ [ backgroundSize cover ] ]
-    , small [ class class_ [ backgroundImage (url "assets/city1-1500-1000.jpg") ] ]
-    , medium [ class class_ [ backgroundImage (url "assets/city1-2400-1600.jpg") ] ]
-    , largest [ class class_ [ backgroundImage (url "assets/city1-3600-2400.jpg") ] ]
+    , small [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-1500-1000.jpg" ] ]
+    , medium [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-2400-1600.jpg" ] ]
+    , largest [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-3600-2400.jpg" ] ]
     ]
 
 

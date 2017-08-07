@@ -4,12 +4,12 @@ import Char
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
 import ViewAboutRoute exposing (viewAboutRoute)
-import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text)
+import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text, ul)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
 import List.Extra exposing (findIndex)
 import Material.Options exposing (Style, css)
 import Html.CssHelpers
-import Models exposing (ContactMsg(..), Msg(..), Route(AboutRoute, ContactRoute, NotFoundRoute, ThanksRoute))
+import Models exposing (ContactMsg(..), Msg(..), Route(AboutRoute, ContactRoute, ClientsRoute, NotFoundRoute, ThanksRoute))
 import Material.Layout as Layout
 import Models
 import Material.Card as Card
@@ -20,6 +20,7 @@ import Routing exposing (routeList, routeStrings)
 import Material.Color as Color
 import Material.Scheme
 import Material.Button as Button
+import Material.Grid exposing (Device(All, Phone), cell, grid, size)
 
 
 { id, class, classList } =
@@ -38,7 +39,7 @@ root model =
             , Layout.onSelectTab SelectTab
             , Layout.selectedTab <| Maybe.withDefault -1 <| findIndex ((==) model.route) routeList
             ]
-            { header = [ ]
+            { header = []
             , drawer =
                 []
             , tabs = ( List.map text routeStrings, [] )
@@ -57,7 +58,10 @@ viewPageContent model =
             viewContactRoute model.mdl model.contact
 
         ThanksRoute ->
-            viewThanksRoute model
+            viewThanksRoute
+
+        ClientsRoute ->
+            viewClientsRoute
 
         NotFoundRoute ->
             div [ class [ SideMargins ] ]
@@ -122,13 +126,39 @@ viewContactRoute mdl contact =
         ]
 
 
-viewThanksRoute model =
+viewThanksRoute =
     div [ class [ CardBackground ] ] <|
         [ showCard
             "Thanks for reaching out!"
             "We'll be in touch in the next day or so."
             []
         ]
+
+
+viewClientsRoute =
+    div []
+        [ grid []
+            [ cell [ size All 12 ] [ h3 [] [ text "Previous Clients" ] ]
+            , customerIcon "vmware.svg" []
+            , customerIcon "bigCommerce.svg" []
+            , customerIcon "pws.png" []
+            , customerIcon "tms.png" []
+            , customerIcon "visa.png" []
+            , customerIcon "vizient.svg" []
+            , customerIcon "cargill.svg" []
+            , customerIcon "yahooSports.jpg" []
+            ]
+        ]
+
+
+customerIcon image styles =
+    let
+        imageAttributes =
+            [ attribute "src" ("assets/client_logos/" ++ image), class [ CustomerIcon ] ] ++ styles
+    in
+        cell [ size All 3, size Phone 4 ]
+            [ img imageAttributes []
+            ]
 
 
 hiddenField index mdl value fieldName =
@@ -140,6 +170,7 @@ hiddenField index mdl value fieldName =
         , Options.attribute <| Html.Attributes.attribute "name" fieldName
         ]
         []
+
 
 showContactFormField index mdl label field inputType msg =
     Textfield.render Models.Mdl

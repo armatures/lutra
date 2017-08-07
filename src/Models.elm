@@ -32,7 +32,9 @@ type Route
     = AboutRoute
     | ContactRoute
     | ThanksRoute
+    | ClientsRoute
     | NotFoundRoute
+
 
 type ProjectType
     = NewProject

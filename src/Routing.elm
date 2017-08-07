@@ -12,6 +12,7 @@ matchers =
         [ map AboutRoute top
         , map AboutRoute (s "about")
         , map ContactRoute (s "contact")
+        , map ClientsRoute (s "clients")
         , map ThanksRoute (s "thanks")
         ]
 
@@ -41,6 +42,9 @@ routeAsString r =
         ThanksRoute ->
             "Thanks"
 
+        ClientsRoute ->
+            "Clients"
+
         NotFoundRoute ->
             "Route Not Found"
 
@@ -53,6 +57,7 @@ routeAsUrlFragment =
 routeList =
     {--routes that have links in the header --}
     [ AboutRoute
+    , ClientsRoute
     , ContactRoute
     ]
 

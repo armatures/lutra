@@ -4,6 +4,7 @@ import Css exposing (..)
 import Css.Namespace exposing (namespace)
 import Css.Elements exposing (a, body, h3, input)
 
+
 type CssClasses
     = HeaderLinks
     | PageWrapper
@@ -19,6 +20,7 @@ type CssClasses
     | CustomerTypeContent
     | Caption
     | ColoredListItem
+    | CustomerIcon
 
 
 css =
@@ -75,16 +77,13 @@ css =
         , class LandingImage
             [ backgroundSize cover
             , backgroundImage (url "assets/markus-spiske-37930.jpg")
---            , backgroundColor (rgb 30 30 30)
             , minHeight (pct 50)
             , marginBottom (px 40)
             , backgroundPosition center
             ]
         , class LandingImageContent
-            [
-            textAlign center
---            , minHeight (vh 50)
-            , padding2 (px 100)(px 100)
+            [ textAlign center
+            , padding2 (px 100) (px 100)
             , color white
             ]
         , class CustomerTypeContent
@@ -97,6 +96,8 @@ css =
             , flex auto
             , borderRight3 (px 3) solid (rgb 255 255 255)
             ]
+        , notAPhone [ class CustomerIcon [ width (pct 70), margin2 (px 10) zero ] ]
+        , phoneOnly [ class CustomerIcon [ width (pct 100), margin2 (px 10) zero ] ]
         , class Caption
             [ padding (px 10)
             , textAlign center
@@ -116,8 +117,18 @@ css =
         ]
             ++ (scaledBackgroundImage CardBackground)
 
-primary = rgb 0 188 212
-white = rgb 255 255 255
+
+primary =
+    rgb 0 188 212
+
+
+white =
+    rgb 255 255 255
+
+
+lightGrey =
+    rgb 200 200 200
+
 
 scaledBackgroundImage class_ =
     [ notAPhone [ class class_ [ backgroundSize cover ] ]

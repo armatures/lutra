@@ -32,7 +32,7 @@ styles =
 
 
 root model =
-    Material.Scheme.topWithScheme Color.Cyan Color.Indigo <|
+    Material.Scheme.topWithScheme Color.Cyan Color.Blue <|
         Layout.render Models.Mdl
             model.mdl
             [ Layout.fixedHeader

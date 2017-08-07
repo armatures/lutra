@@ -1,6 +1,13 @@
-.elm-overlay {z-index: 1000;}
+.elm-overlay { z-index: 1000; }
 form .mdl-textfield { width: 100%; }
+
+/* @media only screen and ( min-width: 600px ) { */
+/* 	.mdl-layout__tab-bar-right-button > i.material-icons { display: none;  } */
+/* } */
+
 .mdl-layout__tab-bar-right-button > i.material-icons { display: none;  }
+.mdl-layout__tab-bar-right-button { width: 0px !important; }
+
 main { height: 100% }
 div .mdl-layout__header { min-height: 0px; }
 

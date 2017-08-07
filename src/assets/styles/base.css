@@ -7,6 +7,7 @@ form .mdl-textfield { width: 100%; }
 
 .mdl-layout__tab-bar-right-button > i.material-icons { display: none;  }
 .mdl-layout__tab-bar-right-button { width: 0px !important; }
+ul { list-style-type: none; }
 
 main { height: 100% }
 div .mdl-layout__header { min-height: 0px; }

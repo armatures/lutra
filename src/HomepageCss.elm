@@ -17,6 +17,8 @@ type CssClasses
     | ContactForm
     | CenteredCard
     | DrawerIcon
+    | CustomerTypeContentNotPhone
+    | CustomerTypeContentPhone
     | CustomerTypeContent
     | Caption
     | ColoredListItem
@@ -87,9 +89,10 @@ css =
             ]
         , class CustomerTypeContent
             [ verticalAlign center
-            , padding2 (pct 10) (pct 10)
             , textAlign center
             ]
+        , phoneOnly [ class CustomerTypeContentNotPhone [ display none, padding2 (pct 10) (pct 10) ] ]
+        , notAPhone [ class CustomerTypeContentPhone [ display none ] ]
         , class DrawerIcon
             [ maxWidth (px 100)
             , flex auto

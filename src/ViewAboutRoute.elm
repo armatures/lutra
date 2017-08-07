@@ -27,30 +27,44 @@ viewAboutRoute model =
             ]
 
 
-captionedListIcon image caption onclick_ =
-    li [ class [ ColoredListItem ], onClick onclick_ ]
-        [ img
-            [ attribute "src" ("assets/" ++ image)
-            , class [ DrawerIcon ]
-            ]
-            []
-        , span [ class [ Caption ] ] [ text caption ]
-        ]
-
-
 customerTypeList mdl projectType =
     [ grid []
         [ cell [ size All 4 ]
-            [ ul []
-                [ captionedListIcon "lutra_customer_new_project.svg" "I have a new project" (ChangeProjectType NewProject)
-                , captionedListIcon "lutra_customer_existing_project.svg" "I have an existing project" (ChangeProjectType ExistingProject)
-                , captionedListIcon "lutra_customer_out_of_hand.svg" "My project is getting out of hand" (ChangeProjectType OutOfHand)
-                , captionedListIcon "lutra_customer_sentient.svg" "My project may have become sentient" (ChangeProjectType Sentient)
-                ]
+            [ ul [] <|
+                List.concat
+                    [ captionedListIcon mdl "lutra_customer_new_project.svg" "I have a new project" NewProject projectType
+                    , captionedListIcon mdl "lutra_customer_existing_project.svg" "I have an existing project" ExistingProject projectType
+                    , captionedListIcon mdl "lutra_customer_out_of_hand.svg" "My project is getting out of hand" OutOfHand projectType
+                    , captionedListIcon mdl "lutra_customer_sentient.svg" "My project may have become sentient" Sentient projectType
+                    ]
             ]
-        , cell [ size All 8 ] <| [ customerTypeContent mdl projectType ]
+        , cell [ size All 8 ] [ div [ class [ CustomerTypeContent, CustomerTypeContentNotPhone ] ] <| customerTypeContent mdl projectType ]
         ]
     ]
+
+
+captionedListIcon mdl image caption projectMsg currentProjectType =
+    let
+        mainContent =
+            li [ class [ ColoredListItem ], onClick (ChangeProjectType projectMsg) ]
+                [ img
+                    [ attribute "src" ("assets/" ++ image)
+                    , class [ DrawerIcon ]
+                    ]
+                    []
+                , span [ class [ Caption ] ] [ text caption ]
+                ]
+
+        optionalContent =
+            li [ class [ CustomerTypeContent, CustomerTypeContentPhone ] ] <| customerTypeContent mdl projectMsg
+
+        node =
+            if currentProjectType == projectMsg then
+                [ mainContent, optionalContent ]
+            else
+                [ mainContent ]
+    in
+        node
 
 
 customerTypeContent mdl projectType =
@@ -94,8 +108,7 @@ customerTypeContent mdl projectType =
                     , contactButton mdl
                     ]
     in
-        div [ class [ CustomerTypeContent ] ]
-            content
+        content
 
 
 contactButton mdl =

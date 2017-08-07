@@ -13,7 +13,7 @@ build-prod:
 	$(project_root)node_modules/webpack/bin/webpack.js
 
 deploy:
-	cd dist && cf push lutra -m 32M
+	cd dist && cf push lutra -m 64M
 
 dev-server:
 	npm start

@@ -46,10 +46,13 @@ css =
             ]
         , class SideMargins
             [ padding2 zero (px 30) ]
-        , class CenteredCard
-            [ margin2 (px 10) auto
-            , minWidth (px 400)
-            , padding (px 20)
+        , phoneOnly [ class CenteredCard [ margin auto ] ]
+        , notAPhone
+            [ class CenteredCard
+                [ margin2 (px 10) auto
+                , minWidth (px 400)
+                , padding (px 20)
+                ]
             ]
         , class ContactForm
             [ boxShadow5 zero zero (px 15) (px 10) (rgba 0 0 0 0.1)

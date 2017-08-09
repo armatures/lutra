@@ -7,7 +7,7 @@ import Html.CssHelpers
 import Html.Events exposing (onClick)
 import Material
 import Models exposing (Model, Msg(SelectTab, UrlChange))
-import Material.Grid exposing (Device(All), cell, grid, size)
+import Material.Grid exposing (Device(All, Tablet), cell, grid, size)
 import Models exposing (Msg(ChangeProjectType), ProjectType(..))
 import Material.Button as Button
 
@@ -29,7 +29,7 @@ viewAboutRoute model =
 customerTypeList : Material.Model -> ProjectType -> List (Html Msg)
 customerTypeList mdl projectType =
     [ grid []
-        [ cell [ size All 4 ]
+        [ cell [ size All 4, size Tablet 8 ]
             [ ul [] <|
                 List.concat
                     [ captionedListIcon mdl "lutra_customer_new_project.svg" "I have a new project" NewProject projectType
@@ -38,7 +38,7 @@ customerTypeList mdl projectType =
                     , captionedListIcon mdl "lutra_customer_sentient.svg" "My project may have become sentient" Sentient projectType
                     ]
             ]
-        , cell [ size All 8 ] [ div [ class [ CustomerTypeContent, CustomerTypeContentNotPhone ] ] <| customerTypeContent mdl projectType ]
+        , cell [ size All 8, size Tablet 8] [ div [ class [ CustomerTypeContent, CustomerTypeContentNotPhone ] ] <| customerTypeContent mdl projectType ]
         ]
     ]
 

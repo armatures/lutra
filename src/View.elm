@@ -21,7 +21,7 @@ import Routing exposing (routeList, routeStrings)
 import Material.Color as Color
 import Material.Scheme
 import Material.Button as Button
-import Material.Grid exposing (Device(All, Phone), cell, grid, size)
+import Material.Grid exposing (Device(All, Desktop, Phone, Tablet), cell, grid, size)
 
 
 { id, class, classList } =
@@ -164,7 +164,7 @@ customerIcon image styles =
         imageAttributes =
             [ attribute "src" ("assets/client_logos/" ++ image), class [ CustomerIcon ] ] ++ styles
     in
-        cell [ size Phone 2, size All 3 ]
+        cell [ size Phone 2, size Tablet 4, size Desktop 3 ]
             [ img imageAttributes []
             ]
 

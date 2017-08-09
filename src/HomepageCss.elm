@@ -47,8 +47,8 @@ css =
             ]
         , class SideMargins
             [ padding2 zero (px 30) ]
-        , phoneOnly [ class CenteredCard [ margin auto ] ]
-        , notAPhone
+        , smallerThanDesktop [ class CenteredCard [ margin auto ] ]
+        , desktopSize
             [ class CenteredCard
                 [ margin2 (px 10) auto
                 , minWidth (px 400)
@@ -90,24 +90,24 @@ css =
             [ textAlign center
             , color white
             ]
-        , notAPhone [ class LandingImageContent [ padding2 (px 100) (px 100) ]]
-        , phoneOnly [ class LandingImageContent [ padding2 (px 80) (px 10)]]
+        , desktopSize [ class LandingImageContent [ padding2 (px 100) (px 100) ]]
+        , smallerThanDesktop [ class LandingImageContent [ padding2 (px 80) (px 10)]]
         , class CustomerTypeContent
             [ verticalAlign center
             , textAlign center
+            , padding2 (pct 10) (pct 10)
             ]
         , class CustomerTypeContentNotPhone [
-            padding2 (pct 10) (pct 10)
         ]
-        , phoneOnly [ class CustomerTypeContentNotPhone [ display none ] ]
-        , notAPhone [ class CustomerTypeContentPhone [ display none ] ]
+        , smallerThanDesktop [ class CustomerTypeContentNotPhone [ display none ] ]
+        , desktopSize [ class CustomerTypeContentPhone [ display none ] ]
         , class DrawerIcon
             [ maxWidth (px 100)
             , flex auto
             , borderRight3 (px 3) solid (rgb 255 255 255)
             ]
-        , notAPhone [ class CustomerIcon [ width (pct 70), margin2 (px 10) zero ] ]
-        , phoneOnly [ class CustomerIcon [ width (pct 100), margin2 (px 10) zero ] ]
+        , desktopSize [ class CustomerIcon [ width (pct 70), margin2 (px 10) zero ] ]
+        , smallerThanDesktop [ class CustomerIcon [ width (pct 100), margin2 (px 10) zero ] ]
         , class Caption
             [ padding (px 10)
             , textAlign center
@@ -144,20 +144,20 @@ lightGrey =
 
 scaledBackgroundImage : a -> String -> List Snippet
 scaledBackgroundImage class_ imageName =
-    [ notAPhone [ class class_ [ backgroundSize cover ] ]
+    [ desktopSize [ class class_ [ backgroundSize cover ] ]
     , small [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-1500-1000.jpg" ] ]
     , medium [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-2400-1600.jpg" ] ]
     , largest [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-3600-2400.jpg" ] ]
     ]
 
-phoneOnly : List Snippet -> Snippet
-phoneOnly =
-    mediaQuery "screen and ( max-width: 600px )"
+smallerThanDesktop : List Snippet -> Snippet
+smallerThanDesktop =
+    mediaQuery "screen and ( max-width: 839px )"
 
 
-notAPhone: List Snippet -> Snippet
-notAPhone =
-    mediaQuery "screen and ( min-width: 600px )"
+desktopSize: List Snippet -> Snippet
+desktopSize =
+    mediaQuery "screen and ( min-width: 840px )" --elm-mdl uses 840 as the transition to "Desktop"
 
 small : List Snippet -> Snippet
 small =

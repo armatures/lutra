@@ -1,17 +1,15 @@
 module ViewAboutRoute exposing (viewAboutRoute)
 
 import Html exposing (Html, a, button, div, h3, h4, img, li, p, span, text, ul)
-import Css exposing (class)
 import Html.Attributes exposing (attribute, href)
 import HomepageCss exposing (CssClasses(..))
 import Html.CssHelpers
 import Html.Events exposing (onClick)
+import Material
 import Models exposing (Model, Msg(SelectTab, UrlChange))
 import Material.Grid exposing (Device(All), cell, grid, size)
 import Models exposing (Msg(ChangeProjectType), ProjectType(..))
-import Material.Options as Options
 import Material.Button as Button
-import Navigation
 
 
 { id, class, classList } =
@@ -28,6 +26,7 @@ viewAboutRoute model =
             ]
 
 
+customerTypeList : Material.Model -> ProjectType -> List (Html Msg)
 customerTypeList mdl projectType =
     [ grid []
         [ cell [ size All 4 ]
@@ -44,6 +43,7 @@ customerTypeList mdl projectType =
     ]
 
 
+captionedListIcon : Material.Model -> String -> String -> ProjectType -> ProjectType -> List (Html Msg)
 captionedListIcon mdl image caption projectMsg currentProjectType =
     let
         mainContent =
@@ -68,6 +68,7 @@ captionedListIcon mdl image caption projectMsg currentProjectType =
         node
 
 
+customerTypeContent : Material.Model -> ProjectType -> List (Html Msg)
 customerTypeContent mdl projectType =
     let
         content =
@@ -112,6 +113,7 @@ customerTypeContent mdl projectType =
         content
 
 
+contactButton : Material.Model -> Html Msg
 contactButton mdl =
     a [ href ("#contact") ]
         [ Button.render Models.Mdl
@@ -138,6 +140,7 @@ landingImage =
             ]
         ]
     ]
+
 
 aboutContent : List (Html msg)
 aboutContent =

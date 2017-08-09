@@ -51,6 +51,7 @@ root model =
                 ]
             }
 
+
 viewPageContent : Model -> Html Msg
 viewPageContent model =
     case model.route of
@@ -71,6 +72,7 @@ viewPageContent model =
                 [ h3 [] [ text "Route not found" ]
                 , a [ href ("#about") ] [ text "Take me home" ]
                 ]
+
 
 viewContactRoute : Material.Model -> Contact -> Html Msg
 viewContactRoute mdl contact =
@@ -128,6 +130,7 @@ viewContactRoute mdl contact =
             ]
         ]
 
+
 viewThanksRoute : Html a
 viewThanksRoute =
     div [ class [ CardBackground ] ] <|
@@ -136,6 +139,7 @@ viewThanksRoute =
             "We'll be in touch in the next day or so."
             []
         ]
+
 
 viewClientsRoute : Html a
 viewClientsRoute =
@@ -177,8 +181,8 @@ hiddenField index mdl value fieldName =
         []
 
 
-showContactFormField
-    : Int
+showContactFormField :
+    Int
     -> Material.Model
     -> String
     -> String

@@ -17,6 +17,7 @@ main =
         , view = View.root
         }
 
+
 init : Navigation.Location -> ( Model, Cmd msg )
 init location =
     { route = Routing.parseLocation location
@@ -55,11 +56,10 @@ update msg model =
             { model | contact = (updateContact msg_ model.contact) } ! []
 
         ChangeProjectType t ->
-            {model | projectType = t} ! []
+            { model | projectType = t } ! []
 
         Mdl msg_ ->
             Material.update Mdl msg_ model
-
 
 
 updateContact : ContactMsg -> Contact -> Contact

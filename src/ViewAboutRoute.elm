@@ -6,7 +6,7 @@ import Html.Attributes exposing (attribute, href)
 import HomepageCss exposing (CssClasses(..))
 import Html.CssHelpers
 import Html.Events exposing (onClick)
-import Models exposing (Msg(SelectTab, UrlChange))
+import Models exposing (Model, Msg(SelectTab, UrlChange))
 import Material.Grid exposing (Device(All), cell, grid, size)
 import Models exposing (Msg(ChangeProjectType), ProjectType(..))
 import Material.Options as Options
@@ -18,6 +18,7 @@ import Navigation
     Html.CssHelpers.withNamespace "lutra"
 
 
+viewAboutRoute : Model -> Html Msg
 viewAboutRoute model =
     div [] <|
         List.concat
@@ -123,6 +124,7 @@ contactButton mdl =
         ]
 
 
+landingImage : List (Html msg)
 landingImage =
     [ div [ class [ LandingImage ] ]
         [ div
@@ -137,7 +139,7 @@ landingImage =
         ]
     ]
 
-
+aboutContent : List (Html msg)
 aboutContent =
     [ div [ class [ SideMargins ] ]
         [ p [] [ text """

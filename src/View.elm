@@ -3,13 +3,14 @@ module View exposing (root)
 import Char
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
+import Material
 import ViewAboutRoute exposing (viewAboutRoute)
 import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text, ul)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
 import List.Extra exposing (findIndex)
 import Material.Options exposing (Style, css)
 import Html.CssHelpers
-import Models exposing (ContactMsg(..), Msg(..), Route(AboutRoute, ContactRoute, ClientsRoute, NotFoundRoute, ThanksRoute))
+import Models exposing (Contact, ContactMsg(..), Model, Msg(..), Route(AboutRoute, ClientsRoute, ContactRoute, NotFoundRoute, ThanksRoute))
 import Material.Layout as Layout
 import Models
 import Material.Card as Card
@@ -27,10 +28,12 @@ import Material.Grid exposing (Device(All, Phone), cell, grid, size)
     Html.CssHelpers.withNamespace "lutra"
 
 
+styles : List Css.Mixin -> Html.Attribute msg
 styles =
     Css.asPairs >> Html.Attributes.style
 
 
+root : Model -> Html Msg
 root model =
     Material.Scheme.topWithScheme Color.Cyan Color.Blue <|
         Layout.render Models.Mdl
@@ -48,7 +51,7 @@ root model =
                 ]
             }
 
-
+viewPageContent : Model -> Html Msg
 viewPageContent model =
     case model.route of
         AboutRoute ->
@@ -69,7 +72,7 @@ viewPageContent model =
                 , a [ href ("#about") ] [ text "Take me home" ]
                 ]
 
-
+viewContactRoute : Material.Model -> Contact -> Html Msg
 viewContactRoute mdl contact =
     div [ class [ CardBackground ] ]
         [ showCard
@@ -125,7 +128,7 @@ viewContactRoute mdl contact =
             ]
         ]
 
-
+viewThanksRoute : Html a
 viewThanksRoute =
     div [ class [ CardBackground ] ] <|
         [ showCard
@@ -134,7 +137,7 @@ viewThanksRoute =
             []
         ]
 
-
+viewClientsRoute : Html a
 viewClientsRoute =
     div []
         [ grid []
@@ -151,6 +154,7 @@ viewClientsRoute =
         ]
 
 
+customerIcon : String -> List (Html.Attribute msg) -> Material.Grid.Cell msg
 customerIcon image styles =
     let
         imageAttributes =
@@ -161,6 +165,7 @@ customerIcon image styles =
             ]
 
 
+hiddenField : Int -> Material.Model -> String -> String -> Html Msg
 hiddenField index mdl value fieldName =
     Textfield.render Models.Mdl
         [ index ]
@@ -172,6 +177,14 @@ hiddenField index mdl value fieldName =
         []
 
 
+showContactFormField
+    : Int
+    -> Material.Model
+    -> String
+    -> String
+    -> String
+    -> (String -> Msg)
+    -> Html Msg
 showContactFormField index mdl label field inputType msg =
     Textfield.render Models.Mdl
         [ index ]
@@ -186,6 +199,7 @@ showContactFormField index mdl label field inputType msg =
         []
 
 
+showCard : String -> String -> List (Html a) -> Html a
 showCard head subhead innerContent =
     Card.view
         [ Elevation.e8

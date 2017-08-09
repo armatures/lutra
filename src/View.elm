@@ -156,7 +156,7 @@ customerIcon image styles =
         imageAttributes =
             [ attribute "src" ("assets/client_logos/" ++ image), class [ CustomerIcon ] ] ++ styles
     in
-        cell [ size All 3, size Phone 4 ]
+        cell [ size Phone 2, size All 3 ]
             [ img imageAttributes []
             ]
 

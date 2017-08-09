@@ -47,7 +47,7 @@ captionedListIcon : Material.Model -> String -> String -> ProjectType -> Project
 captionedListIcon mdl image caption projectMsg currentProjectType =
     let
         mainContent =
-            li [ class [ ColoredListItem ], onClick (ChangeProjectType projectMsg) ]
+            li [ class [ ColoredListItem ], onClick onClick_ ]
                 [ img
                     [ attribute "src" ("assets/" ++ image)
                     , class [ DrawerIcon ]
@@ -55,6 +55,12 @@ captionedListIcon mdl image caption projectMsg currentProjectType =
                     []
                 , span [ class [ Caption ] ] [ text caption ]
                 ]
+
+        onClick_ =
+            if currentProjectType == projectMsg then
+                    ChangeProjectType InitialProjectType
+                else
+                    ChangeProjectType projectMsg
 
         optionalContent =
             li [ class [ CustomerTypeContent, CustomerTypeContentPhone ] ] <| customerTypeContent mdl projectMsg

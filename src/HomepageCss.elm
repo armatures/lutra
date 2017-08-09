@@ -25,6 +25,7 @@ type CssClasses
     | CustomerIcon
 
 
+css : Stylesheet
 css =
     (stylesheet << namespace "lutra") <|
         [ class Header []
@@ -87,14 +88,18 @@ css =
             ]
         , class LandingImageContent
             [ textAlign center
-            , padding2 (px 100) (px 100)
             , color white
             ]
+        , notAPhone [ class LandingImageContent [ padding2 (px 100) (px 100) ]]
+        , phoneOnly [ class LandingImageContent [ padding2 (px 80) (px 10)]]
         , class CustomerTypeContent
             [ verticalAlign center
             , textAlign center
             ]
-        , phoneOnly [ class CustomerTypeContentNotPhone [ display none, padding2 (pct 10) (pct 10) ] ]
+        , class CustomerTypeContentNotPhone [
+            padding2 (pct 10) (pct 10)
+        ]
+        , phoneOnly [ class CustomerTypeContentNotPhone [ display none ] ]
         , notAPhone [ class CustomerTypeContentPhone [ display none ] ]
         , class DrawerIcon
             [ maxWidth (px 100)
@@ -124,18 +129,20 @@ css =
             ++ (scaledBackgroundImage LandingImage "landing")
 
 
+primary : Color
 primary =
     rgb 0 188 212
 
-
+white : Color
 white =
     rgb 255 255 255
 
-
+lightGrey : Color
 lightGrey =
     rgb 200 200 200
 
 
+scaledBackgroundImage : a -> String -> List Snippet
 scaledBackgroundImage class_ imageName =
     [ notAPhone [ class class_ [ backgroundSize cover ] ]
     , small [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-1500-1000.jpg" ] ]
@@ -143,22 +150,23 @@ scaledBackgroundImage class_ imageName =
     , largest [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-3600-2400.jpg" ] ]
     ]
 
-
+phoneOnly : List Snippet -> Snippet
 phoneOnly =
     mediaQuery "screen and ( max-width: 600px )"
 
 
+notAPhone: List Snippet -> Snippet
 notAPhone =
     mediaQuery "screen and ( min-width: 600px )"
 
-
+small : List Snippet -> Snippet
 small =
     mediaQuery "screen and ( max-width: 1500px )"
 
-
+medium: List Snippet -> Snippet
 medium =
     mediaQuery "screen and ( min-width: 1501px ) and ( max-width: 2400px )"
 
-
+largest: List Snippet -> Snippet
 largest =
     mediaQuery "screen and ( min-width: 2401px )"

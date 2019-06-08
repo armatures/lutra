@@ -1,12 +1,14 @@
 {
   "name": "lutra",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "elm": "0.18.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.25.0",
-    "elm-css": "^0.6.0",
+    "elm-css": "^0.6.1",
     "elm-css-webpack-loader": "^2.0.2",
     "elm-hot-loader": "^0.4.2",
     "elm-test": "^0.18.0",

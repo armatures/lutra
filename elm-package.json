@@ -1,11 +1,10 @@
 {
     "version": "1.0.0",
-    "summary": "get some rhymes",
-    "repository": "https://github.com/charliebevis/modernstandard.git",
+    "summary": "Lutra",
+    "repository": "https://github.com/armatures/lutra.git",
     "license": "blah",
     "source-directories": [
-        "src",
-        "tmp"
+        "src"
     ],
     "exposed-modules": [],
     "dependencies": {

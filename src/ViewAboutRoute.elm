@@ -97,7 +97,7 @@ customerTypeContent mdl projectType =
                 ExistingProject ->
                     [ h3 [] [ text "An existing project" ]
                     , p [] [ text """Maybe you're getting more traffic than you can handle (good problems, right?),
-                or maybe your existing project isn't as easy to add features to as it used to be.""" ]
+                or your existing project isn't as easy to add features to as it used to be.""" ]
                     , p [] [ text "We've been there, and can help you with your problems, good or bad." ]
                     , contactButton mdl
                     ]
@@ -160,11 +160,11 @@ aboutContent =
              """ ]
         , p [] [ text """
             Lutra was founded by Charlie Bevis, who has been writing software for clients ranging from startups to
-            Fortune 500 companies for over 5 years.
+            Fortune 500 companies for nearly 8 years.
 
             Charlie has experience consulting in Ruby on Rails, C#, Java, and many flavors of JavaScript
              (Elm, React, Angular, Angular 2, BackboneJS and Ember),
-             and advocates emphatically for adoption of developer-friendly languages like Elm and Haskell.
+             and is passionate about strongly-typed, maintainable languages like Elm.
             """ ]
         ]
     ]

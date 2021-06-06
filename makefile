@@ -13,7 +13,7 @@ build-prod:
 	rm -rf dist && npx webpack && touch dist/Staticfile
 
 deploy:
-	cd dist && cf push lutra -m 64M
+	npx netlify deploy --dir=dist
 
 dev-server:
 	npm start

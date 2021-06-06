@@ -2,7 +2,8 @@
   "name": "lutra",
   "main": "index.html",
   "dependencies": {
-    "elm": "0.18.0"
+    "elm": "0.18.0",
+    "netlify-cli": "3.30.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

@@ -3,25 +3,23 @@ module View exposing (root)
 import Char
 import Css exposing (class, padding, px)
 import HomepageCss exposing (CssClasses(..))
-import Material
-import ViewAboutRoute exposing (viewAboutRoute)
 import Html exposing (Html, a, div, form, h1, h3, h4, img, input, label, li, p, span, text, ul)
 import Html.Attributes exposing (attribute, for, href, placeholder, style)
-import List.Extra exposing (findIndex)
-import Material.Options exposing (Style, css)
 import Html.CssHelpers
-import Models exposing (Contact, ContactMsg(..), Model, Msg(..), Route(AboutRoute, ClientsRoute, ContactRoute, NotFoundRoute, ThanksRoute))
-import Material.Layout as Layout
-import Models
-import Material.Card as Card
-import Material.Elevation as Elevation
-import Material.Textfield as Textfield
-import Material.Options as Options
-import Routing exposing (routeList, routeStrings)
-import Material.Color as Color
-import Material.Scheme
+import List.Extra exposing (findIndex)
+import Material
 import Material.Button as Button
+import Material.Card as Card
+import Material.Color as Color
+import Material.Elevation as Elevation
 import Material.Grid exposing (Device(All, Desktop, Phone, Tablet), cell, grid, size)
+import Material.Layout as Layout
+import Material.Options as Options exposing (Style, css)
+import Material.Scheme
+import Material.Textfield as Textfield
+import Models exposing (Contact, ContactMsg(..), Model, Msg(..), Route(AboutRoute, ClientsRoute, ContactRoute, NotFoundRoute, ThanksRoute))
+import Routing exposing (routeList, routeStrings)
+import ViewAboutRoute exposing (viewAboutRoute)
 
 
 { id, class, classList } =
@@ -70,7 +68,7 @@ viewPageContent model =
         NotFoundRoute ->
             div [ class [ SideMargins ] ]
                 [ h3 [] [ text "Route not found" ]
-                , a [ href ("#about") ] [ text "Take me home" ]
+                , a [ href "#about" ] [ text "Take me home" ]
                 ]
 
 
@@ -164,9 +162,9 @@ customerIcon image styles =
         imageAttributes =
             [ attribute "src" ("assets/client_logos/" ++ image), class [ CustomerIcon ] ] ++ styles
     in
-        cell [ size Phone 2, size Tablet 4, size Desktop 3 ]
-            [ img imageAttributes []
-            ]
+    cell [ size Phone 2, size Tablet 4, size Desktop 3 ]
+        [ img imageAttributes []
+        ]
 
 
 hiddenField : Int -> Material.Model -> String -> String -> Html Msg

@@ -1,10 +1,9 @@
 module Main exposing (..)
 
 import Material
-import Models exposing (Model, Route(AboutRoute), ProjectType(InitialProjectType))
+import Models exposing (..)
 import Navigation exposing (modifyUrl)
 import Routing exposing (routeAsString, routeAsUrlFragment, routeByIndex)
-import Models exposing (..)
 import View exposing (..)
 
 
@@ -47,13 +46,13 @@ update msg model =
                 newRoute =
                     routeByIndex num
             in
-                { model | route = newRoute }
-                    ! [ modifyUrl <|
-                            routeAsUrlFragment newRoute
-                      ]
+            { model | route = newRoute }
+                ! [ modifyUrl <|
+                        routeAsUrlFragment newRoute
+                  ]
 
         ContactFormMsg msg_ ->
-            { model | contact = (updateContact msg_ model.contact) } ! []
+            { model | contact = updateContact msg_ model.contact } ! []
 
         ChangeProjectType t ->
             { model | projectType = t } ! []

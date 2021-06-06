@@ -1,8 +1,8 @@
-module HomepageCss exposing (css, CssClasses(..))
+module HomepageCss exposing (CssClasses(..), css)
 
 import Css exposing (..)
-import Css.Namespace exposing (namespace)
 import Css.Elements exposing (a, body, h3, input)
+import Css.Namespace exposing (namespace)
 
 
 type CssClasses
@@ -70,10 +70,10 @@ css =
             ]
         , body
             [ margin (px 0)
-            , fontFamilies [ qt ("Quicksand"), "Helvetica", .value sansSerif ]
+            , fontFamilies [ qt "Quicksand", "Helvetica", .value sansSerif ]
             ]
         , h3
-            [ fontFamilies [ qt ("Rubik"), "Helvetica", .value sansSerif ]
+            [ fontFamilies [ qt "Rubik", "Helvetica", .value sansSerif ]
             ]
         , class CardBackground
             [ padding2 (px 10) zero
@@ -90,15 +90,15 @@ css =
             [ textAlign center
             , color white
             ]
-        , desktopSize [ class LandingImageContent [ padding2 (px 100) (px 100) ]]
-        , smallerThanDesktop [ class LandingImageContent [ padding2 (px 80) (px 10)]]
+        , desktopSize [ class LandingImageContent [ padding2 (px 100) (px 100) ] ]
+        , smallerThanDesktop [ class LandingImageContent [ padding2 (px 80) (px 10) ] ]
         , class CustomerTypeContent
             [ verticalAlign center
             , textAlign center
             , padding2 (pct 10) (pct 10)
             ]
-        , class CustomerTypeContentNotPhone [
-        ]
+        , class CustomerTypeContentNotPhone
+            []
         , smallerThanDesktop [ class CustomerTypeContentNotPhone [ display none ] ]
         , desktopSize [ class CustomerTypeContentPhone [ display none ] ]
         , class DrawerIcon
@@ -125,17 +125,19 @@ css =
             [ padding zero
             ]
         ]
-            ++ (scaledBackgroundImage CardBackground "city1")
-            ++ (scaledBackgroundImage LandingImage "landing")
+            ++ scaledBackgroundImage CardBackground "city1"
+            ++ scaledBackgroundImage LandingImage "landing"
 
 
 primary : Color
 primary =
     rgb 0 188 212
 
+
 white : Color
 white =
     rgb 255 255 255
+
 
 lightGrey : Color
 lightGrey =
@@ -150,23 +152,31 @@ scaledBackgroundImage class_ imageName =
     , largest [ class class_ [ backgroundImage <| url <| "assets/" ++ imageName ++ "-3600-2400.jpg" ] ]
     ]
 
+
 smallerThanDesktop : List Snippet -> Snippet
 smallerThanDesktop =
     mediaQuery "screen and ( max-width: 839px )"
 
 
-desktopSize: List Snippet -> Snippet
+desktopSize : List Snippet -> Snippet
 desktopSize =
-    mediaQuery "screen and ( min-width: 840px )" --elm-mdl uses 840 as the transition to "Desktop"
+    mediaQuery "screen and ( min-width: 840px )"
+
+
+
+--elm-mdl uses 840 as the transition to "Desktop"
+
 
 small : List Snippet -> Snippet
 small =
     mediaQuery "screen and ( max-width: 1500px )"
 
-medium: List Snippet -> Snippet
+
+medium : List Snippet -> Snippet
 medium =
     mediaQuery "screen and ( min-width: 1501px ) and ( max-width: 2400px )"
 
-largest: List Snippet -> Snippet
+
+largest : List Snippet -> Snippet
 largest =
     mediaQuery "screen and ( min-width: 2401px )"

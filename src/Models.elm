@@ -1,4 +1,4 @@
-module Models exposing (Route(..), Model, Msg(..), ContactMsg(..), Contact, ProjectType(..))
+module Models exposing (Contact, ContactMsg(..), Model, Msg(..), ProjectType(..), Route(..))
 
 import Material
 import Navigation

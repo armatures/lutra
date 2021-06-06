@@ -1,8 +1,8 @@
 module Routing exposing (..)
 
 import Array exposing (get)
-import Navigation exposing (Location)
 import Models exposing (Model, Route(..))
+import Navigation exposing (Location)
 import UrlParser exposing (..)
 
 
@@ -54,6 +54,7 @@ routeAsUrlFragment =
     routeAsString >> String.toLower >> (++) "#"
 
 
+routeList : List Route
 routeList =
     {--routes that have links in the header --}
     [ AboutRoute
@@ -64,7 +65,7 @@ routeList =
 
 parseLocation : Location -> Route
 parseLocation location =
-    case (parseHash matchers location) of
+    case parseHash matchers location of
         Just route ->
             route
 

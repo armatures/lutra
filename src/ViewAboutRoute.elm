@@ -82,7 +82,7 @@ customerTypeContent mdl projectType =
             case projectType of
                 InitialProjectType ->
                     [ h3 [] [ text "Help for all project types" ]
-                    , h4 [] [ text "choose your project from the list on the left" ]
+                    , h4 [] [ text "Choose your project from the list on the left" ]
                     ]
 
                 NewProject ->
@@ -165,7 +165,7 @@ aboutContent =
 
             Charlie has experience consulting in Ruby on Rails, C#, Java, and many flavors of JavaScript
              (Elm, React, Angular, Angular 2, BackboneJS and Ember),
-             and is passionate about strongly-typed, maintainable languages like Elm.
+             and is passionate about strongly-typed functional languages like Haskell, PureScript, and Elm.
             """ ]
         ]
     ]

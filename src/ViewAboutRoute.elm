@@ -1,15 +1,14 @@
 module ViewAboutRoute exposing (viewAboutRoute)
 
+import HomepageCss exposing (CssClasses(..))
 import Html exposing (Html, a, button, div, h3, h4, img, li, p, span, text, ul)
 import Html.Attributes exposing (attribute, href)
-import HomepageCss exposing (CssClasses(..))
 import Html.CssHelpers
 import Html.Events exposing (onClick)
 import Material
-import Models exposing (Model, Msg(SelectTab, UrlChange))
-import Material.Grid exposing (Device(All, Tablet), cell, grid, size)
-import Models exposing (Msg(ChangeProjectType), ProjectType(..))
 import Material.Button as Button
+import Material.Grid exposing (Device(All, Tablet), cell, grid, size)
+import Models exposing (Model, Msg(ChangeProjectType, SelectTab, UrlChange), ProjectType(..))
 
 
 { id, class, classList } =
@@ -38,7 +37,7 @@ customerTypeList mdl projectType =
                     , captionedListIcon mdl "lutra_customer_sentient.svg" "My project may have become sentient" Sentient projectType
                     ]
             ]
-        , cell [ size All 8, size Tablet 8] [ div [ class [ CustomerTypeContent, CustomerTypeContentNotPhone ] ] <| customerTypeContent mdl projectType ]
+        , cell [ size All 8, size Tablet 8 ] [ div [ class [ CustomerTypeContent, CustomerTypeContentNotPhone ] ] <| customerTypeContent mdl projectType ]
         ]
     ]
 
@@ -58,9 +57,10 @@ captionedListIcon mdl image caption projectMsg currentProjectType =
 
         onClick_ =
             if currentProjectType == projectMsg then
-                    ChangeProjectType InitialProjectType
-                else
-                    ChangeProjectType projectMsg
+                ChangeProjectType InitialProjectType
+
+            else
+                ChangeProjectType projectMsg
 
         optionalContent =
             li [ class [ CustomerTypeContent, CustomerTypeContentPhone ] ] <| customerTypeContent mdl projectMsg
@@ -68,10 +68,11 @@ captionedListIcon mdl image caption projectMsg currentProjectType =
         node =
             if currentProjectType == projectMsg then
                 [ mainContent, optionalContent ]
+
             else
                 [ mainContent ]
     in
-        node
+    node
 
 
 customerTypeContent : Material.Model -> ProjectType -> List (Html Msg)
@@ -116,12 +117,12 @@ customerTypeContent mdl projectType =
                     , contactButton mdl
                     ]
     in
-        content
+    content
 
 
 contactButton : Material.Model -> Html Msg
 contactButton mdl =
-    a [ href ("#contact") ]
+    a [ href "#contact" ]
         [ Button.render Models.Mdl
             [ 1 ]
             mdl
@@ -160,7 +161,7 @@ aboutContent =
              """ ]
         , p [] [ text """
             Lutra was founded by Charlie Bevis, who has been writing software for clients ranging from startups to
-            Fortune 500 companies for nearly 8 years.
+            Fortune 500 companies since 2012.
 
             Charlie has experience consulting in Ruby on Rails, C#, Java, and many flavors of JavaScript
              (Elm, React, Angular, Angular 2, BackboneJS and Ember),
